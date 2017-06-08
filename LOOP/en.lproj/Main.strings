@@ -1,0 +1,90 @@
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "0rj-8w-YpW"; */
+"0rj-8w-YpW.placeholder" = "Email";
+
+/* Class = "UILabel"; text = "Loop Version 1.0.0 (ID..)"; ObjectID = "2XN-2T-MRX"; */
+"2XN-2T-MRX.text" = "Loop Version 1.0.0 (ID..)";
+
+/* Class = "UIButton"; normalTitle = "Find Password"; ObjectID = "62G-Ra-NWz"; */
+"62G-Ra-NWz.normalTitle" = "Find Password";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "7eR-HL-5n7"; */
+"7eR-HL-5n7.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "Copywrite c Smoky Inc. All rights reserved"; ObjectID = "8eJ-3C-Gd4"; */
+"8eJ-3C-Gd4.text" = "Copywrite c Smoky Inc. All rights reserved";
+
+/* Class = "UILabel"; text = "Please enter your email address"; ObjectID = "AwQ-YJ-JHG"; */
+"AwQ-YJ-JHG.text" = "Please enter your email address";
+
+/* Class = "UILabel"; text = "Copywrite c Smoky Inc. All rights reserved"; ObjectID = "FJl-gr-xBA"; */
+"FJl-gr-xBA.text" = "Copywrite c Smoky Inc. All rights reserved";
+
+/* Class = "UITextField"; placeholder = "Full Name"; ObjectID = "Iz5-pv-yLx"; */
+"Iz5-pv-yLx.placeholder" = "Full Name";
+
+/* Class = "UILabel"; text = "Loop Version 1.0.0 (ID..)"; ObjectID = "Jg6-La-eiz"; */
+"Jg6-La-eiz.text" = "Loop Version 1.0.0 (ID..)";
+
+/* Class = "UILabel"; text = "and confirm your acount on your inbox"; ObjectID = "KM9-7P-eFM"; */
+"KM9-7P-eFM.text" = "and confirm your acount on your inbox";
+
+/* Class = "UIButton"; normalTitle = "Sign In"; ObjectID = "Man-ss-zzU"; */
+"Man-ss-zzU.normalTitle" = "Sign In";
+
+/* Class = "UILabel"; text = "Loop Version 1.0.0 (ID..)"; ObjectID = "NQG-eo-TyJ"; */
+"NQG-eo-TyJ.text" = "Loop Version 1.0.0 (ID..)";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "PgP-ma-GUc"; */
+"PgP-ma-GUc.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "Please fill in with your personal information"; ObjectID = "Qaf-mO-crv"; */
+"Qaf-mO-crv.text" = "Please fill in with your personal information";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "QpM-T2-wIv"; */
+"QpM-T2-wIv.placeholder" = "Email";
+
+/* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "Qzf-1n-7fh"; */
+"Qzf-1n-7fh.placeholder" = "Confirm Password";
+
+/* Class = "UILabel"; text = "Welcome to Loop"; ObjectID = "Tna-BM-xU3"; */
+"Tna-BM-xU3.text" = "Welcome to Loop";
+
+/* Class = "UILabel"; text = "Copywrite c Smoky Inc. All rights reserved"; ObjectID = "VE2-ti-MjR"; */
+"VE2-ti-MjR.text" = "Copywrite c Smoky Inc. All rights reserved";
+
+/* Class = "UITextField"; placeholder = "Full Name"; ObjectID = "XGb-Kg-ZOZ"; */
+"XGb-Kg-ZOZ.placeholder" = "Full Name";
+
+/* Class = "UIButton"; normalTitle = "Forgot password?"; ObjectID = "XV3-5V-61e"; */
+"XV3-5V-61e.normalTitle" = "Forgot password?";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "ZqH-ro-zzG"; */
+"ZqH-ro-zzG.normalTitle" = "Sign Up";
+
+/* Class = "UILabel"; text = "Copywrite c Smoky Inc. All rights reserved"; ObjectID = "cxO-sM-jYh"; */
+"cxO-sM-jYh.text" = "Copywrite c Smoky Inc. All rights reserved";
+
+/* Class = "UILabel"; text = "Welcome to Loop"; ObjectID = "fAj-Rd-ZtY"; */
+"fAj-Rd-ZtY.text" = "Welcome to Loop";
+
+/* Class = "UILabel"; text = "You don't have an account?"; ObjectID = "qMk-ze-F5z"; */
+"qMk-ze-F5z.text" = "You don't have an account?";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "qSs-Pj-i1L"; */
+"qSs-Pj-i1L.normalTitle" = "Sign Up";
+
+/* Class = "UIButton"; normalTitle = "Sign In"; ObjectID = "sim-gZ-Kaj"; */
+"sim-gZ-Kaj.normalTitle" = "Sign In";
+
+/* Class = "UILabel"; text = "If you communicate business"; ObjectID = "tkX-9c-uOj"; */
+"tkX-9c-uOj.text" = "If you communicate business";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "w84-Ni-jW0"; */
+"w84-Ni-jW0.normalTitle" = "Sign Up";
+
+/* Class = "UILabel"; text = "Loop Version 1.0.0 (ID..)"; ObjectID = "ykJ-xD-5hE"; */
+"ykJ-xD-5hE.text" = "Loop Version 1.0.0 (ID..)";
+
+/* Class = "UILabel"; text = "If you communicate business"; ObjectID = "zVn-fa-1el"; */
+"zVn-fa-1el.text" = "If you communicate business";

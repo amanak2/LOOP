@@ -8,10 +8,12 @@
 
 import UIKit
 import Contacts
+import Alamofire
 
-class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,YourCellDelegate {
 
 	@IBOutlet weak var tableView: UITableView!
+	var email: String!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +69,9 @@ class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataS
 		let contacts = self.contacts[indexPath.row]
 		cell?.updateUI(contact: contacts)
 		
+		cell?.cellDelegate = self
+		cell?.tag = indexPath.row
+		
 		return cell!
 	}
 	
@@ -74,6 +79,43 @@ class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataS
 		dismiss(animated: true, completion: nil)
 	}
 	
+	func didPressButton(_ tag: Int) {
+		let contacts = self.contacts[tag]
+		
+		let parameters: Parameters = [
+			"email": contacts.emailAddresses.first?.value as String!
+		]
+		
+		Alamofire.request("\(baseURL)/frndsSystem.php?action=send&my_email=rishabh9393@gmail.com", method: .post, parameters: parameters).responseJSON { response in
+		
+			if let dict = response.result.value as? Dictionary<String, AnyObject> {
+				
+				if let Status = dict["status"] as? Int {
+					if Status == 200 {
+						// request sent
+						let alert = UIAlertController(title: "Invite", message: "Invite sent", preferredStyle: .alert)
+						
+						let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
+						
+						alert.addAction(okBtn)
+						self.present(alert, animated: true, completion: nil)
+						
+					} else if Status == 409 {
+						// Already Friend 
+						let alert = UIAlertController(title: "Invite", message: "Already your friend", preferredStyle: .alert)
+						
+						let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
+						
+						alert.addAction(okBtn)
+						self.present(alert, animated: true, completion: nil)
+					}
+				}
+			}
+		}
+	}
 	
-	
+}
+
+protocol YourCellDelegate: class {
+	func didPressButton(_ tag: Int)
 }

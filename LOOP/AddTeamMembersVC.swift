@@ -14,12 +14,9 @@ class AddTeamMembersVC: UIViewController,UITableViewDelegate, UITableViewDataSou
 	@IBOutlet weak var tableView: UITableView!
 	
 	var myContacts = [[String: Any]]()
-
 	var teamMembers = [String: String]()
-	
 	var prevTeam = [String: [String: String]]()
-	
-	var teamName: String!
+	var team: String!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,13 +41,16 @@ class AddTeamMembersVC: UIViewController,UITableViewDelegate, UITableViewDataSou
 	}
 	
 	@IBAction func doneBtn(_ sender: Any) {
-		if (UserDefaults.standard.object(forKey: "Team") != nil) {
-			prevTeam = UserDefaults.standard.object(forKey: "Team") as! [String : [String : String]]
-			prevTeam.updateValue(teamMembers, forKey: teamName)
-			UserDefaults.standard.set(prevTeam, forKey: "Team")
+		if (UserDefaults.standard.object(forKey: "Team") == nil) {
+			prevTeam.updateValue(teamMembers, forKey: team)
+			save(prevTeam: prevTeam, forKey: "Data")
+			performSegue(withIdentifier: "backToCreateTeamVC", sender: self)
 		} else {
-			prevTeam.updateValue(teamMembers, forKey: teamName)
-			UserDefaults.standard.set(prevTeam, forKey: "Team")
+			let savedDictionary = retrieveDictionary(withKey: "Data")
+			prevTeam = savedDictionary!
+			prevTeam.updateValue(teamMembers, forKey: team)
+			save(prevTeam: prevTeam, forKey: "Data")
+			performSegue(withIdentifier: "backToCreateTeamVC", sender: self)
 		}
 	}
 	
@@ -62,6 +62,7 @@ class AddTeamMembersVC: UIViewController,UITableViewDelegate, UITableViewDataSou
 		let cell = tableView.dequeueReusableCell(withIdentifier: "AddMembersCell", for: indexPath) as? AddMembersCell
 		let myContacts = self.myContacts[indexPath.row]
 		cell?.updateUI(Contacts: myContacts)
+		
 		return cell!
 	}
 	
@@ -71,19 +72,33 @@ class AddTeamMembersVC: UIViewController,UITableViewDelegate, UITableViewDataSou
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		
-		if let cell = tableView.cellForRow(at: indexPath) {
-			
-			if cell.accessoryType == .checkmark {
-				cell.accessoryType = .none
-				teamMembers.removeValue(forKey: (cell.textLabel?.text)!)
-			} else {
-				cell.accessoryType = .checkmark
-				if teamMembers.isEmpty {
-					teamMembers = [(cell.textLabel?.text)!: (cell.detailTextLabel?.text)!]
-				} else {
-					teamMembers.updateValue((cell.detailTextLabel?.text)!, forKey: (cell.detailTextLabel?.text)!)
-				}
-			}
+		let cell = tableView.cellForRow(at: indexPath) as! AddMembersCell
+		
+		if cell.isSelected {
+			teamMembers.updateValue(cell.personNameLbl.text!, forKey: cell.personEmailLbl.text!)
 		}
+		
+	}
+	
+	func save(prevTeam: [String: [String: String]], forKey key: String) {
+		let archiver = NSKeyedArchiver.archivedData(withRootObject: prevTeam)
+		UserDefaults.standard.set(archiver, forKey: "Team")
+	}
+	
+	func retrieveDictionary(withKey key: String) -> [String: [String: String]]? {
+		
+		// Check if data exists
+		guard let data = UserDefaults.standard.object(forKey: "Team") else {
+			return nil
+		}
+		
+		// Check if retrieved data has correct type
+		guard let retrievedData = data as? Data else {
+			return nil
+		}
+		
+		// Unarchive data
+		let unarchivedObject = NSKeyedUnarchiver.unarchiveObject(with: retrievedData)
+		return unarchivedObject as? [String: [String: String]]
 	}
 }

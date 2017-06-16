@@ -12,3 +12,4 @@ let baseURL = "http://35.154.30.238/smokeApi/code/"
 let myEmail = UserDefaults.standard.object(forKey: "email") as! String
 
 typealias downloadComplete = () -> ()
+

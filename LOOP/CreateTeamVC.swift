@@ -15,6 +15,7 @@ class CreateTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 	var teamName: String!
 	var team = [String: [String: String]]()
 	var names = [String]()
+	var send = [String: String]()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,8 @@ class CreateTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 		tableView.dataSource = self
 		
 		if UserDefaults.standard.object(forKey: "Team") != nil {
-			team = UserDefaults.standard.object(forKey: "Team") as! [String : [String : String]]
+			let savedDictionary = retrieveDictionary(withKey: "Data")
+			team = savedDictionary!
 			names = Array(team.keys)
 		}
 	}
@@ -44,8 +46,6 @@ class CreateTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 			UIAlertAction in
 			let textField = alert.textFields![0]
 			self.teamName = textField.text
-			let otherVC = AddTeamMembersVC()
-			otherVC.teamName = self.teamName
 			self.performSegue(withIdentifier: "AddTeamMembersVC", sender: self)
 		}
 		
@@ -61,6 +61,18 @@ class CreateTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 	
 	}
 	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "AddTeamMembersVC" {
+			let destination = segue.destination as! AddTeamMembersVC
+			destination.team = teamName
+		}
+		
+		if segue.identifier == "ViewTeamMembersVC" {
+			let destination = segue.destination as! ViewTeamMembersVC
+			destination.teamMembers = send
+		}
+	}
+	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return names.count
 	}
@@ -74,4 +86,36 @@ class CreateTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 	func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
+	
+	func retrieveDictionary(withKey key: String) -> [String: [String: String]]? {
+		
+		// Check if data exists
+		guard let data = UserDefaults.standard.object(forKey: "Team") else {
+			return nil
+		}
+		
+		// Check if retrieved data has correct type
+		guard let retrievedData = data as? Data else {
+			return nil
+		}
+		
+		// Unarchive data
+		let unarchivedObject = NSKeyedUnarchiver.unarchiveObject(with: retrievedData)
+		return unarchivedObject as? [String: [String: String]]
+	}
+	
+	
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		
+		let cell = tableView.cellForRow(at: indexPath)
+		
+		for (key, value) in team {
+			if cell?.textLabel?.text == key {
+				send = value
+				performSegue(withIdentifier: "ViewTeamMembersVC", sender: self)
+			}
+		}
+	}
+	
 }

@@ -12,9 +12,12 @@ class ContactsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-
+		
+//		//clear userdefaults
+//		if let bundle = Bundle.main.bundleIdentifier {
+//			UserDefaults.standard.removePersistentDomain(forName: bundle)
+//		}
+	}
+	
+	
 }

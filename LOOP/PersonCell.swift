@@ -17,6 +17,8 @@ class PersonCell: UITableViewCell {
 	@IBOutlet weak var personImg: UIImageView!
 	@IBOutlet weak var inviteBtn: UIButton!
 	
+	weak var cellDelegate: YourCellDelegate!
+	
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -35,30 +37,9 @@ class PersonCell: UITableViewCell {
 	}
 	
 	
-	
-	@IBAction func inviteBtnPressed(_ sender: Any) {
-		
-		let parameters: Parameters = [
-			"email": personEmailLbl.text as Any
-		]
-
-		
-		Alamofire.request("\(baseURL)/frndsSystem.php?action=send&my_email=\(myEmail as Any)", method: .post, parameters: parameters).responseJSON { response in
-			
-			if let dict = response.result.value as? Dictionary<String, AnyObject> {
-				
-				if let Status = dict["status"] as? Int {
-					if Status == 200 {
-						self.inviteBtn.setTitle("Invited", for: .normal)
-					} else if Status == 409 {
-						self.inviteBtn.setTitle("Error", for: .normal)
-					}
-				}
-			}
-		}
-
+	@IBAction func inviteBtnPressed(_ sender: UIButton) {
+	cellDelegate?.didPressButton(self.tag)
 	}
-	
 	
 	
 }

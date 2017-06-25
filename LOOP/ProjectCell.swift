@@ -10,8 +10,11 @@ import UIKit
 
 class ProjectCell: UITableViewCell {
 
+	@IBOutlet weak var joinBtn: UIButton!
 	@IBOutlet weak var projectNameLbl: UILabel!
 	@IBOutlet weak var messageLbl: UILabel!
+	
+	weak var cellDelegate: MyCellDelegate!
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,5 +30,11 @@ class ProjectCell: UITableViewCell {
 		projectNameLbl.text = notifications.adminEmail
 		messageLbl.text = notifications.message
 	}
+	
+	@IBAction func joinBtnPressed(_ sender: UIButton) {
+		cellDelegate.didJoinPressButton(self.tag)
+	}
+	
+	
 
 }

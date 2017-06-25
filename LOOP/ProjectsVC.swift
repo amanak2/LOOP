@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MyCellDelegate{
 
 	@IBOutlet weak var tableView: UITableView!
 	
@@ -39,6 +39,16 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 				}
 				self.tableView.reloadData()
 			}
+		}
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "SelectStateVC" {
+			let destination = segue.destination as! ChooseMembersFromMyContactsVC
+			destination.projectName = self.projectName
+			
+			let destination2 = segue.destination as! ChooseTeamMemberVC
+			destination2.projectName = self.projectName
 		}
 	}
 	
@@ -88,5 +98,30 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 		return notifications.count
 	}
 	
-	
+	func didJoinPressButton(_ tag: Int) {
+		let notification = self.notifications[tag]
+		
+		let parameters: Parameters = [
+			"g_id" : notification.g_id,
+			"email" : "Email",
+			"type" : notification.type
+		]
+		
+		Alamofire.request("\(baseURL)/chat_notification_accept.php", method: .post, parameters: parameters).responseJSON { response in
+			
+			if let dict = response.result.value as? Dictionary<String, AnyObject> {
+				
+				let status = dict["status"] as? String
+				
+				if status == "200" {
+					// hide join button
+				}
+				
+			}
+		}
+	}
+}
+
+protocol MyCellDelegate: class {
+	func didJoinPressButton(_ tag: Int)
 }

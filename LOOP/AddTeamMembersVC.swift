@@ -44,13 +44,13 @@ class AddTeamMembersVC: UIViewController,UITableViewDelegate, UITableViewDataSou
 		if (UserDefaults.standard.object(forKey: "Team") == nil) {
 			prevTeam.updateValue(teamMembers, forKey: team)
 			save(prevTeam: prevTeam, forKey: "Data")
-			performSegue(withIdentifier: "backToCreateTeamVC", sender: self)
+			dismiss(animated: true, completion: nil)
 		} else {
 			let savedDictionary = retrieveDictionary(withKey: "Data")
 			prevTeam = savedDictionary!
 			prevTeam.updateValue(teamMembers, forKey: team)
 			save(prevTeam: prevTeam, forKey: "Data")
-			performSegue(withIdentifier: "backToCreateTeamVC", sender: self)
+			dismiss(animated: true, completion: nil)
 		}
 	}
 	

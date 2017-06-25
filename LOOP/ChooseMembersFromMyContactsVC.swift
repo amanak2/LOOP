@@ -14,8 +14,8 @@ class ChooseMembersFromMyContactsVC: UIViewController, UITableViewDataSource, UI
 	@IBOutlet weak var tableView: UITableView!
 	
 	var myContacts = [[String: Any]]()
-	
 	var selectedMembers = [String: String]()
+	var projectName: String!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +48,7 @@ class ChooseMembersFromMyContactsVC: UIViewController, UITableViewDataSource, UI
 		if segue.identifier == "backToProjectVC" {
 			let destination = segue.destination as! ProjectsVC
 			destination.selectedMembers = self.selectedMembers
+			
 		}
 	}
 	
@@ -79,7 +80,6 @@ class ChooseMembersFromMyContactsVC: UIViewController, UITableViewDataSource, UI
 			selectedMembers.updateValue(cat!, forKey: email!)
 		}
 		
-		selectedMembers.updateValue(cell.catagoryLbl.text!, forKey: cell.personEmailLbl.text!)
 	}
 	
 }

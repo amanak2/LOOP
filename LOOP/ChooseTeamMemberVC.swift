@@ -13,7 +13,7 @@ class ChooseTeamMemberVC: UIViewController, UITableViewDelegate, UITableViewData
 	@IBOutlet weak var tableView: UITableView!
 	
 	var teamMembers = [String: String]()
-	var selectedMembers = [String: String]()
+	var projectName: String!
 	
 	struct objects {
 		var userEmail: String!
@@ -21,9 +21,12 @@ class ChooseTeamMemberVC: UIViewController, UITableViewDelegate, UITableViewData
 	}
 	
 	var objArray = [objects]()
+	var selectedMembers = [String: String]()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		tableView.delegate = self
+		tableView.dataSource = self
 
 		for (key, value) in teamMembers {
 			objArray.append(objects(userEmail: key, userName: value))
@@ -55,6 +58,12 @@ class ChooseTeamMemberVC: UIViewController, UITableViewDelegate, UITableViewData
 		}
 		
 		selectedMembers.updateValue(cell.catagoryLbl.text!, forKey: cell.personEmailLbl.text!)
+		
 	}
+	
+	@IBAction func doneBtnPressed(_ sender: Any) {
+		performSegue(withIdentifier: "backToProjectVC", sender: self)
+	}
+	
 
 }

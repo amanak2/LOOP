@@ -26,6 +26,10 @@ class AddMeetingVC: UIViewController {
 	
 	var selectedMembers = [String: String]()
 	
+	var smembers = [AnyObject]()
+	
+	var selected = [String: String]()
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		dataPickerView.setValue(UIColor.white, forKey: "textColor")
@@ -34,8 +38,15 @@ class AddMeetingVC: UIViewController {
 		getCurrentDate()
 		getCurrentTime()
 		
-		printUsers()
+		if selectedMembers.isEmpty == false {
+			for (key, value) in selectedMembers {
+				selected = ["useremail": key, "catagory": value]
+				smembers.append(selected as AnyObject)
+			}
+		}
     }
+	
+	
 	
 	func getCurrentTime() {
 		let date = Date()
@@ -77,16 +88,11 @@ class AddMeetingVC: UIViewController {
 		setTime = "\(hour):\(min)"
 		selectedTimeLbl.text = "\(day)-\(month)-\(year), \(hour):\(min)" 
 	}
-	
-	func printUsers() {
-		for (key, value) in selectedMembers {
-			let printThis =  ["email": key, "catagory": value]
-			print("\(printThis)")
-		}
-	}
-	
 
 	@IBAction func doneBtnPressed(_ sender: Any) {
+		
+		let jsonData = try? JSONSerialization.data(withJSONObject: smembers, options: JSONSerialization.WritingOptions())
+		let jsonString = NSString(data: jsonData!, encoding: String.Encoding.utf8.rawValue)
 		
 		let parameters: Parameters = [
 			"topic" : topicTextField.text!,
@@ -98,16 +104,15 @@ class AddMeetingVC: UIViewController {
    
 			"adminname" : "junaid",
 			"type" : "meeting",
-			"users" : [
-				[
-				printUsers()
-				]
-			],
+			"users" : jsonString as AnyObject,
 			"adminemail" : "pmajok@gmail.com"
 
 		]
 		
+		print(parameters)
+		
 		Alamofire.request("\(baseURL)/meeting_shedule.php", method: .post, parameters: parameters).responseJSON { response in
+			
 			
 			
 			

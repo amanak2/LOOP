@@ -7,5 +7,6 @@ target 'LOOP' do
 
   # Pods for LOOP
   pod 'Alamofire', '~> 4.4'
+  pod 'SwiftyJSON'
 
 end

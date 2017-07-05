@@ -14,7 +14,8 @@ class ProjectCell: UITableViewCell {
 	@IBOutlet weak var projectNameLbl: UILabel!
 	@IBOutlet weak var messageLbl: UILabel!
 	
-	weak var cellDelegate: MyCellDelegate!
+	var cellDelegate: MyCellDelegate!
+	var gId: String!
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,12 +30,15 @@ class ProjectCell: UITableViewCell {
 	func updateUI(notifications: NotificationModel) {
 		projectNameLbl.text = notifications.adminEmail
 		messageLbl.text = notifications.message
+		gId = notifications.g_id
+		
+		if notifications.type == "OpenProject" {
+			joinBtn.isHidden = true
+		}
 	}
 	
 	@IBAction func joinBtnPressed(_ sender: UIButton) {
-		cellDelegate.didJoinPressButton(self.tag)
+		cellDelegate?.didJoinPressButton(self.tag)
 	}
-	
-	
 
 }

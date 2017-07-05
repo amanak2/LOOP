@@ -34,7 +34,7 @@ class signupVC: UIViewController {
 			"pass": passwordTextField.text!
 		]
 		
-		Alamofire.request("\(baseURL)/signup", method: .post, parameters: parameters).responseJSON { response in
+		Alamofire.request("\(baseURL)signup", method: .post, parameters: parameters).responseJSON { response in
 			
 			if let dict = response.result.value as? Dictionary<String, AnyObject> {
 				
@@ -43,7 +43,9 @@ class signupVC: UIViewController {
 				if self.passwordTextField.text == self.confirmPasswordTextField.text {
 					if let Status = dict["status"] as? Int {
 						if Status == 200 {
-							self.performSegue(withIdentifier: "signinVC", sender: self)
+							self.performSegue(withIdentifier: "otpVC", sender: self)
+							UserDefaults.standard.set(true, forKey: "otpSent")
+							UserDefaults.standard.synchronize()
 						} else if Status == 400 {
 							self.msgLbl.text = msg
 						} else if Status == 403 {

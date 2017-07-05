@@ -13,27 +13,31 @@ class DisplayMyContacts: UIViewController, UITableViewDelegate, UITableViewDataS
 
 	@IBOutlet weak var tableView: UITableView!
 	
-	var myContacts = [[String: Any]]()
+	var myContactsModel: MyContactsModel!
+	var myContacts = [MyContactsModel]()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.delegate = self
 		tableView.dataSource = self
 		
-		dowloadMyContacts()
+		downloadMyContactsData()
     }
 
 	@IBAction func backBtn(_ sender: Any) {
 		dismiss(animated: true, completion: nil)
 	}
 	
-	func dowloadMyContacts() {
+	func downloadMyContactsData() {
 		Alamofire.request("\(baseURL)frnd_req.php?my_email=rishabh9393@gmail.com", method: .get).responseJSON { response in
 			
-			if let dict = response.result.value as? [[String:Any]]{
-				self.myContacts=dict
-				self.tableView.reloadData()
+			if let dict = response.result.value as? [[String:Any]] {
+				for obj in dict {
+					let myContact = MyContactsModel(getData: obj)
+					self.myContacts.append(myContact)
+				}
 			}
+			self.tableView.reloadData()
 		}
 	}
 	
@@ -46,12 +50,15 @@ class DisplayMyContacts: UIViewController, UITableViewDelegate, UITableViewDataS
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "MyContactsCell", for: indexPath) as? MyContactsCell
-		
-		let myContacts = self.myContacts[indexPath.row]
-		cell?.updateUI(Contacts: myContacts)
-		
-		return cell!
+		if let cell = tableView.dequeueReusableCell(withIdentifier: "MyContactsCell", for: indexPath) as? MyContactsCell {
+			
+			let myContact = self.myContacts[indexPath.row]
+			cell.updateUI(myContact: myContact)
+			
+			return cell
+		} else {
+			return MyContactsCell()
+		}
 		
 	}
 	

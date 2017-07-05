@@ -37,10 +37,10 @@ class ChooseMemberCell: UITableViewCell {
 	
 	@IBAction func catagoryBtnPressed(_ sender: Any) {
 		
-		if catagoryLbl.text == "Optional" {
-			catagoryLbl.text = "Mandatory"
+		if catagoryLbl.text == "optional" {
+			catagoryLbl.text = "mandatory"
 		} else {
-			catagoryLbl.text = "Optional"
+			catagoryLbl.text = "optional"
 		}
 	}
 	

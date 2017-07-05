@@ -21,6 +21,7 @@ class CreateTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         super.viewDidLoad()
 		tableView.delegate = self
 		tableView.dataSource = self
+		tableView.reloadData()
 		
 		if UserDefaults.standard.object(forKey: "Team") != nil {
 			let savedDictionary = retrieveDictionary(withKey: "Data")

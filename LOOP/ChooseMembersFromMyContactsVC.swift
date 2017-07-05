@@ -16,6 +16,7 @@ class ChooseMembersFromMyContactsVC: UIViewController, UITableViewDataSource, UI
 	var myContacts = [[String: Any]]()
 	var selectedMembers = [String: String]()
 	var projectName: String!
+	var delegate: PassSelectedMembers?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,19 +37,8 @@ class ChooseMembersFromMyContactsVC: UIViewController, UITableViewDataSource, UI
 	}
 	
 	@IBAction func doneBtnPressed(_ sender: Any) {
-		performSegue(withIdentifier: "backToAddMeetingVC", sender: self)
-	}
-	
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == "backToAddMeetingVC" {
-			let destination = segue.destination as! AddMeetingVC
-			destination.selectedMembers = self.selectedMembers
-		}
-		
-		if segue.identifier == "backToProjectVC" {
-			let destination = segue.destination as! ProjectsVC
-			destination.selectedMembers = self.selectedMembers
-			
+		dismiss(animated: true) {
+			self.delegate?.passingMembers(members: self.selectedMembers)
 		}
 	}
 	

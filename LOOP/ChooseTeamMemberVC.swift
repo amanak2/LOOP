@@ -14,6 +14,7 @@ class ChooseTeamMemberVC: UIViewController, UITableViewDelegate, UITableViewData
 	
 	var teamMembers = [String: String]()
 	var projectName: String!
+	var delegate: PassSelectedMembers?
 	
 	struct objects {
 		var userEmail: String!
@@ -62,8 +63,9 @@ class ChooseTeamMemberVC: UIViewController, UITableViewDelegate, UITableViewData
 	}
 	
 	@IBAction func doneBtnPressed(_ sender: Any) {
-		performSegue(withIdentifier: "backToProjectVC", sender: self)
+		dismiss(animated: true) {
+			self.delegate?.passingMembers(members: self.selectedMembers)
+		}
 	}
-	
 
 }

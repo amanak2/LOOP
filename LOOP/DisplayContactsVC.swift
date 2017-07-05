@@ -10,6 +10,10 @@ import UIKit
 import Contacts
 import Alamofire
 
+protocol YourCellDelegate: class {
+	func didPressButton(_ tag: Int)
+}
+
 class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,YourCellDelegate {
 
 	@IBOutlet weak var tableView: UITableView!
@@ -80,15 +84,17 @@ class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataS
 	}
 	
 	func didPressButton(_ tag: Int) {
-		let contacts = self.contacts[tag]
+		let contact = self.contacts[tag]
 		
 		let parameters: Parameters = [
-			"email": contacts.emailAddresses.first?.value as String!
+			"email": contact.emailAddresses.first?.value as String!
 		]
 		
-		Alamofire.request("\(baseURL)/frndsSystem.php?action=send&my_email=rishabh9393@gmail.com", method: .post, parameters: parameters).responseJSON { response in
+		Alamofire.request("\(baseURL)frndsSystem.php?action=send&my_email=rishabh9393@gmail.com", method: .post, parameters: parameters).responseJSON { response in
 		
 			if let dict = response.result.value as? Dictionary<String, AnyObject> {
+				
+				let msg = dict["msg"] as? String
 				
 				if let Status = dict["status"] as? Int {
 					if Status == 200 {
@@ -100,9 +106,9 @@ class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataS
 						alert.addAction(okBtn)
 						self.present(alert, animated: true, completion: nil)
 						
-					} else if Status == 409 {
-						// Already Friend 
-						let alert = UIAlertController(title: "Invite", message: "Already your friend", preferredStyle: .alert)
+					} else {
+						// Failed
+						let alert = UIAlertController(title: "Invite", message: msg, preferredStyle: .alert)
 						
 						let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
 						
@@ -114,8 +120,4 @@ class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataS
 		}
 	}
 	
-}
-
-protocol YourCellDelegate: class {
-	func didPressButton(_ tag: Int)
 }

@@ -29,10 +29,10 @@ class ChooseTeamMemberCell: UITableViewCell {
 	
 	@IBAction func catagoryBtnPressed(_ sender: Any) {
 		
-		if catagoryLbl.text == "Optional" {
-			catagoryLbl.text = "Madatory"
+		if catagoryLbl.text == "optional" {
+			catagoryLbl.text = "madatory"
 		} else {
-			catagoryLbl.text = "Optional"
+			catagoryLbl.text = "optional"
 		}
 	}
 

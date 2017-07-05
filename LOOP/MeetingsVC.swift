@@ -25,7 +25,7 @@ class MeetingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
 	
 	func downloadNotificationData() {
-		Alamofire.request("\(baseURL)notification.php?my_email=rishabh9393@gmail.com", method: .get).responseJSON { response in
+		Alamofire.request("\(baseURL)notification.php?my_email=arunkshk07@gmail.com", method: .get).responseJSON { response in
 			
 			if let dict = response.result.value as? [[String:Any]] {
 				for obj in dict {

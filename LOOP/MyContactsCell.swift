@@ -26,13 +26,9 @@ class MyContactsCell: UITableViewCell {
         // Configure the view for the selected state
     }
 	
-	func updateUI(Contacts: [String:Any]) {
-		if let name = Contacts["user_name"] {
-			personNameLbl.text = name as? String
-		}
-		if let email = Contacts["user_email"] {
-			personEmailLbl.text = email as? String
-		}
+	func updateUI(myContact: MyContactsModel) {
+		personNameLbl.text = myContact.user
+		personEmailLbl.text = myContact.email
 	}
 
 }

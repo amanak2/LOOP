@@ -8,13 +8,16 @@
 
 import UIKit
 
-class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource, PassSelectedMembers {
 
 	@IBOutlet weak var tableView: UITableView!
 	
 	var team = [String: [String: String]]()
 	var names = [String]()
 	var send = [String: String]()
+	var delegate: PassingSelectedTeamMembers?
+	
+	var selectedMembers = [String: String]()
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +77,17 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 		if segue.identifier == "ChooseTeamMemberVC" {
 			let destination = segue.destination as! ChooseTeamMemberVC
 			destination.teamMembers = send
+		}
+		
+		if let destination = segue.destination as? ChooseTeamMemberVC {
+			destination.delegate = self
+		}
+	}
+	
+	func passingMembers(members: [String: String]) {
+		self.selectedMembers = members
+		dismiss(animated: false) {
+			self.delegate?.passingTeamMembers(members: self.selectedMembers)
 		}
 	}
 

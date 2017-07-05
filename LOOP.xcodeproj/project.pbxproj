@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		927A69991F0BAB9F0005E204 /* ProjectDesciptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927A69981F0BAB9F0005E204 /* ProjectDesciptionVC.swift */; };
+		927A699B1F0CBE8C0005E204 /* MyContactsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927A699A1F0CBE8C0005E204 /* MyContactsModel.swift */; };
+		927A699D1F0CF32D0005E204 /* AddProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927A699C1F0CF32D0005E204 /* AddProjectVC.swift */; };
+		927A699F1F0CFB460005E204 /* ParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927A699E1F0CFB460005E204 /* ParticipantsCell.swift */; };
+		92C2B9821F0513DD00C7C21E /* enterOtpVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C2B9811F0513DD00C7C21E /* enterOtpVCViewController.swift */; };
 		92C7E6761EDEA4C200D7170A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C7E6751EDEA4C200D7170A /* AppDelegate.swift */; };
 		92C7E6781EDEA4C200D7170A /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C7E6771EDEA4C200D7170A /* MainVC.swift */; };
 		92C7E67B1EDEA4C200D7170A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92C7E6791EDEA4C200D7170A /* Main.storyboard */; };
@@ -46,6 +51,11 @@
 
 /* Begin PBXFileReference section */
 		24F467655A33F5ABA6E850E1 /* Pods-LOOP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOOP.release.xcconfig"; path = "Pods/Target Support Files/Pods-LOOP/Pods-LOOP.release.xcconfig"; sourceTree = "<group>"; };
+		927A69981F0BAB9F0005E204 /* ProjectDesciptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDesciptionVC.swift; sourceTree = "<group>"; };
+		927A699A1F0CBE8C0005E204 /* MyContactsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyContactsModel.swift; sourceTree = "<group>"; };
+		927A699C1F0CF32D0005E204 /* AddProjectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProjectVC.swift; sourceTree = "<group>"; };
+		927A699E1F0CFB460005E204 /* ParticipantsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantsCell.swift; sourceTree = "<group>"; };
+		92C2B9811F0513DD00C7C21E /* enterOtpVCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enterOtpVCViewController.swift; sourceTree = "<group>"; };
 		92C7E6721EDEA4C200D7170A /* LOOP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LOOP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92C7E6751EDEA4C200D7170A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92C7E6771EDEA4C200D7170A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -145,20 +155,23 @@
 			isa = PBXGroup;
 			children = (
 				92C7E6771EDEA4C200D7170A /* MainVC.swift */,
-				92C7E6A61EE146F300D7170A /* ChatVC.swift */,
-				92C7E69E1EE13ACF00D7170A /* ProjectsVC.swift */,
-				92C7E6A21EE13B3500D7170A /* MeetingsVC.swift */,
-				92C7E6A01EE13AFE00D7170A /* ContactsVC.swift */,
-				92C7E6A41EE13B5700D7170A /* SettingsVC.swift */,
 				92C7E68A1EDEB03500D7170A /* signinVC.swift */,
 				92C7E68C1EDEB04700D7170A /* signupVC.swift */,
 				92C7E69A1EE0349000D7170A /* forgetpassVC.swift */,
+				92C2B9811F0513DD00C7C21E /* enterOtpVCViewController.swift */,
+				92C7E6A61EE146F300D7170A /* ChatVC.swift */,
+				92C7E69E1EE13ACF00D7170A /* ProjectsVC.swift */,
+				927A69981F0BAB9F0005E204 /* ProjectDesciptionVC.swift */,
+				92C7E6A21EE13B3500D7170A /* MeetingsVC.swift */,
+				92C7E6A01EE13AFE00D7170A /* ContactsVC.swift */,
+				92C7E6A41EE13B5700D7170A /* SettingsVC.swift */,
+				92D5B72F1EEA7C3100E4BD5D /* AddMeetingVC.swift */,
+				927A699C1F0CF32D0005E204 /* AddProjectVC.swift */,
 				92D5B7101EE5236B00E4BD5D /* DisplayContactsVC.swift */,
 				92D5B71C1EE5743C00E4BD5D /* DisplayMyContacts.swift */,
 				92D5B7271EE6D0C300E4BD5D /* CreateTeamVC.swift */,
 				92F51E131EEFD3C700F9DAEF /* ViewTeamMembersVC.swift */,
 				92D5B7291EE7CF7000E4BD5D /* AddTeamMembersVC.swift */,
-				92D5B72F1EEA7C3100E4BD5D /* AddMeetingVC.swift */,
 				92D5B7331EEAA75C00E4BD5D /* ChooseMembersFromMyContactsVC.swift */,
 				92F51E1B1EF14ACC00F9DAEF /* SelectTeamVC.swift */,
 				92F51E1D1EF151F900F9DAEF /* ChooseTeamMemberVC.swift */,
@@ -178,6 +191,7 @@
 				92D5B7351EEAA7B600E4BD5D /* ChooseMemberCell.swift */,
 				92F51E1F1EF1537F00F9DAEF /* ViewTeamMembersCell.swift */,
 				92F51E231EF290AE00F9DAEF /* ChooseTeamMemberCell.swift */,
+				927A699E1F0CFB460005E204 /* ParticipantsCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -186,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				92F51E181EF0047B00F9DAEF /* NotificationModel.swift */,
+				927A699A1F0CBE8C0005E204 /* MyContactsModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -331,8 +346,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				927A69991F0BAB9F0005E204 /* ProjectDesciptionVC.swift in Sources */,
 				92D5B70F1EE4278700E4BD5D /* TabBarVC.swift in Sources */,
 				92C7E6A51EE13B5700D7170A /* SettingsVC.swift in Sources */,
+				927A699F1F0CFB460005E204 /* ParticipantsCell.swift in Sources */,
+				92C2B9821F0513DD00C7C21E /* enterOtpVCViewController.swift in Sources */,
 				92C7E67E1EDEA4C200D7170A /* LOOP.xcdatamodeld in Sources */,
 				92D5B72C1EE7D0B800E4BD5D /* AddMembersCell.swift in Sources */,
 				92C7E69B1EE0349000D7170A /* forgetpassVC.swift in Sources */,
@@ -343,6 +361,7 @@
 				92F51E201EF1537F00F9DAEF /* ViewTeamMembersCell.swift in Sources */,
 				92D5B71B1EE542DC00E4BD5D /* PersonCell.swift in Sources */,
 				92F51E241EF290AE00F9DAEF /* ChooseTeamMemberCell.swift in Sources */,
+				927A699B1F0CBE8C0005E204 /* MyContactsModel.swift in Sources */,
 				92C7E68B1EDEB03500D7170A /* signinVC.swift in Sources */,
 				92C7E6991EDFF98B00D7170A /* Constent.swift in Sources */,
 				92D5B7281EE6D0C300E4BD5D /* CreateTeamVC.swift in Sources */,
@@ -355,6 +374,7 @@
 				92C7E6A31EE13B3500D7170A /* MeetingsVC.swift in Sources */,
 				92D5B7211EE580CA00E4BD5D /* MyContactsCell.swift in Sources */,
 				92D5B7361EEAA7B600E4BD5D /* ChooseMemberCell.swift in Sources */,
+				927A699D1F0CF32D0005E204 /* AddProjectVC.swift in Sources */,
 				92F51E191EF0047B00F9DAEF /* NotificationModel.swift in Sources */,
 				92C7E69F1EE13ACF00D7170A /* ProjectsVC.swift in Sources */,
 				92F51E161EF000C700F9DAEF /* ProjectCell.swift in Sources */,

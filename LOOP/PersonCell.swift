@@ -17,7 +17,7 @@ class PersonCell: UITableViewCell {
 	@IBOutlet weak var personImg: UIImageView!
 	@IBOutlet weak var inviteBtn: UIButton!
 	
-	weak var cellDelegate: YourCellDelegate!
+	var cellDelegate: YourCellDelegate!
 	
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,9 +36,8 @@ class PersonCell: UITableViewCell {
 		//  personImg.image = contact.imageData
 	}
 	
-	
 	@IBAction func inviteBtnPressed(_ sender: UIButton) {
-	cellDelegate?.didPressButton(self.tag)
+		cellDelegate?.didPressButton(self.tag)
 	}
 	
 	

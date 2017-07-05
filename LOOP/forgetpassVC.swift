@@ -26,7 +26,7 @@ class forgetpassVC: UIViewController {
 			"email": emailTextField.text!
 		]
 		
-		Alamofire.request("\(baseURL)/forgotpass", method: .post, parameters: parameters).responseJSON { response in
+		Alamofire.request("\(baseURL)forgotpass", method: .post, parameters: parameters).responseJSON { response in
 			
 			if let dict = response.result.value as? Dictionary<String, AnyObject> {
 				
@@ -34,7 +34,7 @@ class forgetpassVC: UIViewController {
 				
 				if let Status = dict["status"] as? String {
 					if Status == "200" {
-						self.performSegue(withIdentifier: "signinVC", sender: self)
+						self.dismiss(animated: true, completion: nil)
 					} else if Status == "400" {
 						self.msgLbl.text = msg
 					}

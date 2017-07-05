@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Team" representedClassName="Team" syncable="YES" codeGenerationType="class">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="toTeamMembers" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeamMembers" inverseName="toTeam" inverseEntity="TeamMembers" syncable="YES"/>
+    <entity name="Meeting" representedClassName="Meeting" syncable="YES" codeGenerationType="class">
+        <attribute name="g_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="topic" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="TeamMembers" representedClassName="TeamMembers" syncable="YES" codeGenerationType="class">
-        <attribute name="userEmail" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="toTeam" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Team" inverseName="toTeamMembers" inverseEntity="Team" syncable="YES"/>
+    <entity name="Project" representedClassName="Project" syncable="YES" codeGenerationType="class">
+        <attribute name="g_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="topic" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Team" positionX="-63" positionY="-18" width="128" height="73"/>
-        <element name="TeamMembers" positionX="142" positionY="20" width="137" height="88"/>
+        <element name="Meeting" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="Project" positionX="-54" positionY="18" width="128" height="75"/>
     </elements>
 </model>

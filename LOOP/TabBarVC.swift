@@ -16,13 +16,18 @@ class TabBarVC: UITabBarController {
 
     }
 	
-	//	func ifLoggedIn() {
-	//		if UserDefaults.standard.bool(forKey: "ifLoggedIn") != true {
-	//			DispatchQueue.main.async() {
-	//				[unowned self] in
-	//				self.performSegue(withIdentifier: "MainVC", sender: self)
-	//			}
-	//		}
-	//	}
+//	func ifLoggedIn() {
+//		if UserDefaults.standard.bool(forKey: "ifLoggedIn") != true {
+//			DispatchQueue.main.async() {
+//				[unowned self] in
+//				self.performSegue(withIdentifier: "MainVC", sender: self)
+//			}
+//		} else if UserDefaults.standard.bool(forKey: "otpSent") == true {
+//			DispatchQueue.main.async() {
+//				[unowned self] in
+//				self.performSegue(withIdentifier: "otpNotSubmitted", sender: self)
+//			}
+//		}
+//	}
 
 }

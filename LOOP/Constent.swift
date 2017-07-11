@@ -20,6 +20,10 @@ protocol PassSelectedMembers {
 	func passingMembers(members: [String: String])
 }
 
+protocol PassMyContacts {
+	func passingContacts(selects: [MyContactsModel])
+}
+
 protocol PassingSelectedTeamMembers  {
 	func passingTeamMembers(members: [String: String])
 }

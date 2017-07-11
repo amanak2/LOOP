@@ -14,16 +14,12 @@ protocol MyCellDelegate: class {
 	func didJoinPressButton(_ tag: Int)
 }
 
-class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MyCellDelegate, PassSelectedMembers, PassingSelectedTeamMembers{
+class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MyCellDelegate{
 
 	@IBOutlet weak var tableView: UITableView!
 	
 	var projectName: String!
-	var selectedMembers = [String: String]()
 	var gId: String!
-	
-	var smembers = [String]()
-	var selected = ""
 	
 	var notificationModel: NotificationModel!
 	var notifications = [NotificationModel]()
@@ -35,16 +31,6 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		
 		downloadNotificationData()
     }
-	
-	func getSmembers() {
-		if selectedMembers.isEmpty == false {
-			for (key, value) in selectedMembers {
-				//selected = ["useremail": key, "catagory": value]
-				selected = String(format: "{\"category\":\"%@\",\"email\":\"%@\"}", arguments: [key,value])
-				smembers.append(selected)
-			}
-		}
-	}
 	
 	//Download Notifications
 	func downloadNotificationData() {
@@ -63,14 +49,6 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if let destination = segue.destination as? ChooseMembersFromMyContactsVC {
-			destination.delegate = self
-		}
-		
-		if let destination2 = segue.destination as? SelectTeamVC {
-			destination2.delegate = self
-		}
-		
 		if segue.identifier == "ProjectDescriptionVC" {
 			if let destination = segue.destination as? ProjectDesciptionVC {
 				destination.gId = self.gId
@@ -80,100 +58,7 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	
 	//Create New Project
 	@IBAction func createProjectBtnPressed(_ sender: Any) {
-		let alert = UIAlertController(title: "Create Project", message: "Enter Title of New Project", preferredStyle: .alert)
-		
-		alert.addTextField { (textField) in
-			textField.placeholder = "Enter Project Title"
-		}
-		
-		
-		let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-			UIAlertAction in
-			let textField = alert.textFields![0]
-			self.projectName = textField.text
-			self.chooseMembers()
-		}
-		
-		let cancelBtn = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) {
-			UIAlertAction in
-			
-		}
-		
-		alert.addAction(okBtn)
-		alert.addAction(cancelBtn)
-		
-		self.present(alert, animated: true, completion: nil)
-	}
-	
-	func chooseMembers() {
-		let alert = UIAlertController(title: "Add Members", message: "Where would you like to select Members From", preferredStyle: .alert)
-		
-		
-		let myContactsBtn = UIAlertAction(title: "My Contacts", style: UIAlertActionStyle.default) {
-			UIAlertAction in
-			self.performSegue(withIdentifier: "ChooseMembersFromMyContactsVC", sender: self)
-		}
-		
-		let myTeamsBtn = UIAlertAction(title: "My Team", style: UIAlertActionStyle.default) {
-			UIAlertAction in
-			self.performSegue(withIdentifier: "SelectTeam", sender: self)
-		}
-		
-		alert.addAction(myContactsBtn)
-		alert.addAction(myTeamsBtn)
-		
-		self.present(alert, animated: true, completion: nil)
-	}
-	
-	func passingMembers(members: [String: String]) {
-		self.selectedMembers = members
-		getSmembers()
-		
-		let parameters: Parameters = [
-			"topic" : projectName,
-			"adminname" : "rishabh",
-			"type" : "meeting",
-			"users" : "[\(smembers.joined(separator: ","))]",
-			"adminemail" : "rishabh9393@gmail.com",
-			"description": "fjwenfubfyerbjdveub"
-		]
-		print(parameters)
-		
-		Alamofire.request("\(baseURL)user_group.php", method: .post, parameters: parameters).responseJSON { response in
-			if let dict = response.result.value as? Dictionary<String, AnyObject> {
-				let topic = dict["topic"] as? String
-				let g_id = dict["g_id"] as? String
-				
-				self.saveData(topic: topic!, g_id: g_id!)
-			}
-			
-		}
-		
-	}
-	
-	func passingTeamMembers(members: [String : String]) {
-		self.selectedMembers = members
-		getSmembers()
-		
-		let parameters: Parameters = [
-			"topic" : projectName,
-			"adminname" : "rishabh",
-			"type" : "meeting",
-			"users" : "[\(smembers.joined(separator: ","))]",
-			"adminemail" : "rishabh9393@gmail.com",
-			"description": "fjwenfubfyerbjdveub"
-		]
-		
-		Alamofire.request("\(baseURL)user_group.php", method: .post, parameters: parameters).responseJSON { response in
-			
-			if let dict = response.result.value as? Dictionary<String, AnyObject> {
-				let topic = dict["topic"] as? String
-				let g_id = dict["g_id"] as? String
-				
-				self.saveData(topic: topic!, g_id: g_id!)
-			}
-			
-		}
+		performSegue(withIdentifier: "AddProjectVC", sender: self)
 	}
 	
 	
@@ -183,6 +68,7 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		
 		if let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as? ProjectCell {
 			
 			let notifications = self.notifications[indexPath.row]
@@ -204,7 +90,7 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let cell = tableView.cellForRow(at: indexPath) as! ProjectCell
 		
-		if cell.isSelected {
+		if cell.isSelected && cell.type == "OpenProject" {
 			self.gId = cell.gId
 			performSegue(withIdentifier: "ProjectDescriptionVC", sender: self)
 		}
@@ -216,7 +102,7 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		
 		let parameters: Parameters = [
 			"g_id" : notification.g_id,
-			"email" : "Email",
+			"email" : "rishabh9393@gmail.com",
 			"type" : notification.type
 		]
 		
@@ -227,13 +113,13 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 				let status = dict["status"] as? String
 				
 				if status == "200" {
-					self.tableView.reloadData()
+					self.notifications.removeAll()
+					self.downloadNotificationData()
 				}
 			}
 
 			}
 		}
-	
 	//CoreData Saving Functions
 	func saveData(topic: String, g_id: String) {
 		let context = self.getContext()
@@ -244,7 +130,7 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		let transc = NSManagedObject(entity: entity!, insertInto: context)
 		
 		//set the entity values
-		transc.setValue(topic, forKey: "topic")
+		transc.setValue(topic, forKey: "project")
 		transc.setValue(g_id, forKey: "g_id")
 		
 		//save the object

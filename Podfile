@@ -8,5 +8,6 @@ target 'LOOP' do
   # Pods for LOOP
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftyJSON'
+  pod 'SDWebImage', '~>3.8'
 
 end

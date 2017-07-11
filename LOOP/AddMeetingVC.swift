@@ -8,11 +8,13 @@
 
 import UIKit
 import Alamofire
-import SwiftyJSON
 import CoreData
 
-class AddMeetingVC: UIViewController, PassSelectedMembers, PassingSelectedTeamMembers {
+class AddMeetingVC: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, PassSelectedMembers, PassingSelectedTeamMembers, PassMyContacts {
 	
+	@IBOutlet weak var collectionView: UICollectionView!
+	
+	@IBOutlet weak var addParticipantsBtn: UIButton!
 	@IBOutlet weak var selectedTimeLbl: UILabel!
 	@IBOutlet weak var dataPickerView: UIDatePicker!
 	@IBOutlet weak var setDataBtn: UIButton!
@@ -20,6 +22,8 @@ class AddMeetingVC: UIViewController, PassSelectedMembers, PassingSelectedTeamMe
 	@IBOutlet weak var agendaTextField: UITextField!
 	
 	var members = [String : String]()
+	var myContactsModel: MyContactsModel!
+	var contacts = [MyContactsModel]()
 	
 	var currentDate: String!
 	var currentTime: String!
@@ -32,12 +36,25 @@ class AddMeetingVC: UIViewController, PassSelectedMembers, PassingSelectedTeamMe
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		dataPickerView.setValue(UIColor.white, forKey: "textColor")
-		dataPickerView.isHidden = true
+		collectionView.delegate = self
+		collectionView.dataSource = self
 		
 		getCurrentDate()
 		getCurrentTime()
     }
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(true)
+		
+		if contacts.isEmpty {
+			addParticipantsBtn.isHidden = false
+		} else {
+			addParticipantsBtn.isHidden = true
+		}
+		
+		collectionView.reloadData()
+		dataPickerView.isHidden = true
+	}
 	
 	func getSmembers() {
 		if selectedMembers.isEmpty == false {
@@ -93,6 +110,7 @@ class AddMeetingVC: UIViewController, PassSelectedMembers, PassingSelectedTeamMe
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let destination = segue.destination as? ChooseMembersFromMyContactsVC {
 			destination.delegate = self
+			destination.del = self
 		}
 		
 		if let destination2 = segue.destination as? SelectTeamVC {
@@ -108,6 +126,10 @@ class AddMeetingVC: UIViewController, PassSelectedMembers, PassingSelectedTeamMe
 	func passingTeamMembers(members: [String: String]) {
 		self.selectedMembers = members
 		getSmembers()
+	}
+	
+	func passingContacts(selects: [MyContactsModel]) {
+		self.contacts = selects
 	}
 	
 	@IBAction func AddMeetingBtnPressed(_ sender: Any) {
@@ -130,7 +152,6 @@ class AddMeetingVC: UIViewController, PassSelectedMembers, PassingSelectedTeamMe
 		self.present(alert, animated: true, completion: nil)
 	}
 	
-
 	@IBAction func doneBtnPressed(_ sender: Any) {
 		
 		let parameters: Parameters = [
@@ -151,15 +172,13 @@ class AddMeetingVC: UIViewController, PassSelectedMembers, PassingSelectedTeamMe
 		Alamofire.request("\(baseURL)meeting_shedule.php",method: .post, parameters: parameters,encoding: JSONEncoding.default).responseJSON { response in
 			
 			print(response)
-//			if let dict = response.result.value as? Dictionary<String, AnyObject> {
-//				
-//				
-//				let topic = dict["topic"] as? String
-//				let g_id = dict["g_id"] as? String
-//				
-//				self.storeMeeting(topic: topic!, g_id: g_id!)
-//				
-//			}
+			if let dict = response.result.value as? Dictionary<String, AnyObject> {
+				let topic = dict["topic"] as? String
+				let g_id = dict["g_id"] as? String
+				
+				self.storeMeeting(topic: topic!, g_id: g_id!)
+				
+			}
 		}
 		
 		dismiss(animated: true, completion: nil)
@@ -188,11 +207,33 @@ class AddMeetingVC: UIViewController, PassSelectedMembers, PassingSelectedTeamMe
 			
 		}
 	}
-
 	
 	func getContext () -> NSManagedObjectContext {
 		let appDelegate = UIApplication.shared.delegate as! AppDelegate
 		return appDelegate.persistentContainer.viewContext
 	}
-
+	
+	@IBAction func backBtn(_ sender: Any) {
+		dismiss(animated: true, completion: nil)
+	}
+	
+	func numberOfSections(in collectionView: UICollectionView) -> Int {
+		return 1
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return contacts.count
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MparticipantsCell", for: indexPath) as? MparticipantsCell {
+			
+			let contacts = self.contacts[indexPath.row]
+			cell.updateUI(contact: contacts)
+			
+			return cell
+		} else {
+			return MparticipantsCell()
+		}
+	}
 }

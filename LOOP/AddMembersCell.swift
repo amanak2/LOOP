@@ -19,6 +19,8 @@ class AddMembersCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 		
+		personImg.layer.cornerRadius = personImg.frame.size.width / 2
+		personImg.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

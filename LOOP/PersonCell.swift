@@ -21,7 +21,9 @@ class PersonCell: UITableViewCell {
 	
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+		
+		personImg.layer.cornerRadius = personImg.frame.size.width / 2
+		personImg.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

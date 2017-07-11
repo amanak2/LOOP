@@ -1,5 +1,5 @@
 //
-//  ParticipantCell.swift
+//  ParticipantsCell.swift
 //  LOOP
 //
 //  Created by Aman Chawla on 05/07/17.
@@ -8,29 +8,18 @@
 
 import UIKit
 
-class ParticipantsCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-
-}
-
-extension ParticipantsCell:UICollectionViewDataSource {
+class ParticipantsCell: UICollectionViewCell {
+    
+	@IBOutlet weak var userImage: UIImageView!
+	@IBOutlet weak var userNameLbl: UILabel!
 	
-	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		
-		return 1
+	func updateUI(member: MyContactsModel) {
+		userNameLbl.text = member.user
+		userImage.sd_setImage(with: URL(string: member.profile as String), placeholderImage: UIImage(named: "Mr.Nobody"))
 	}
 	
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		
-		
+	override func awakeFromNib() {
+		userImage.layer.cornerRadius = userImage.frame.size.width / 2
+		userImage.clipsToBounds = true
 	}
-	
-	
 }

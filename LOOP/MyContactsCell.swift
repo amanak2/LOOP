@@ -17,7 +17,9 @@ class MyContactsCell: UITableViewCell {
 	
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+		
+		personImg.layer.cornerRadius = personImg.frame.size.width / 2
+		personImg.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,6 +31,7 @@ class MyContactsCell: UITableViewCell {
 	func updateUI(myContact: MyContactsModel) {
 		personNameLbl.text = myContact.user
 		personEmailLbl.text = myContact.email
+		personImg.sd_setImage(with: URL(string: myContact.profile as String), placeholderImage: UIImage(named: "Mr.Nobody"))
 	}
 
 }

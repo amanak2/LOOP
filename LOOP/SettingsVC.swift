@@ -10,11 +10,16 @@ import UIKit
 
 class SettingsVC: UIViewController {
 
-    override func viewDidLoad() {
+	@IBOutlet weak var userImage: UIImageView!
+	@IBOutlet weak var userNameLbl: UILabel!
+	
+	override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+		
+		userImage.layer.cornerRadius = userImage.frame.size.width / 2
+		userImage.clipsToBounds = true
+		
+		//userNameLbl.text = firstname
     }
-
 
 }

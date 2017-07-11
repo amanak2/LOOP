@@ -5,11 +5,12 @@
         <attribute name="topic" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Project" representedClassName="Project" syncable="YES" codeGenerationType="class">
+        <attribute name="discription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="g_id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="topic" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="project" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Meeting" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="Project" positionX="-54" positionY="18" width="128" height="75"/>
+        <element name="Project" positionX="-54" positionY="18" width="128" height="90"/>
     </elements>
 </model>

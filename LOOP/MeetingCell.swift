@@ -13,6 +13,8 @@ class MeetingCell: UITableViewCell {
 	@IBOutlet weak var meetingTypeLbl: UILabel!
 	@IBOutlet weak var meetingTopicsLbl: UILabel!
 	
+	var gid: String!
+	
 	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,6 +29,7 @@ class MeetingCell: UITableViewCell {
 	func updateUI(notification: NotificationModel) {
 		meetingTopicsLbl.text = notification.topic
 		meetingTypeLbl.text = notification.message
+		gid = notification.g_id
 	}
 
 }

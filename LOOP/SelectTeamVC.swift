@@ -90,5 +90,10 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 			self.delegate?.passingTeamMembers(members: self.selectedMembers)
 		}
 	}
+	
+	@IBAction func backBtnPressed(_ sender: Any) {
+		dismiss(animated: true, completion: nil)
+	}
+	
 
 }

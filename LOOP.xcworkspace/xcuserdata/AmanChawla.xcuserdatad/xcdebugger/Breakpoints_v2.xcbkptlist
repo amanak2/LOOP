@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LOOP/NotificationModel.swift"
-            timestampString = "519216290.16277"
+            timestampString = "521467626.086174"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "init(getData:)"
             landmarkType = "7">
             <Locations>
@@ -47,54 +47,6 @@
                   startingLineNumber = "0"
                   endingLineNumber = "0"
                   offsetFromSymbolStart = "4">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LOOP/AddMeetingVC.swift"
-            timestampString = "520928667.81835"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "doneBtnPressed(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LOOP.AddMeetingVC.doneBtnPressed (Any) -&gt; ()"
-                  moduleName = "LOOP"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/AddMeetingVC.swift"
-                  timestampString = "520935920.094007"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "151"
-                  endingLineNumber = "151"
-                  offsetFromSymbolStart = "3664">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LOOP.AddMeetingVC.(doneBtnPressed (Any) -&gt; ()).(closure #1)"
-                  moduleName = "LOOP"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/AddMeetingVC.swift"
-                  timestampString = "520935920.097586"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "153"
-                  endingLineNumber = "153"
-                  offsetFromSymbolStart = "22">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -177,6 +129,178 @@
             endingLineNumber = "87"
             landmarkName = "didPressButton(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LOOP/AddProjectVC.swift"
+            timestampString = "521034356.65053"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "AddProjectVC"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LOOP.AddProjectVC.members.getter : Swift.Array&lt;LOOP.MyContactsModel&gt;"
+                  moduleName = "LOOP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/AddProjectVC.swift"
+                  timestampString = "521447585.742558"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LOOP.AddProjectVC.members.setter : Swift.Array&lt;LOOP.MyContactsModel&gt;"
+                  moduleName = "LOOP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/AddProjectVC.swift"
+                  timestampString = "521447585.745376"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LOOP.AddProjectVC.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; LOOP.AddProjectVC"
+                  moduleName = "LOOP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/AddProjectVC.swift"
+                  timestampString = "521447585.748431"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "243">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LOOP.AddProjectVC.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;LOOP.AddProjectVC&gt;"
+                  moduleName = "LOOP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/AddProjectVC.swift"
+                  timestampString = "521447585.751578"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "156">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LOOP/AddProjectVC.swift"
+            timestampString = "521451291.575541"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "passingContacts(selects:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LOOP/AddParticipantsVC.swift"
+            timestampString = "521447311.836032"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "AddParticipantsVC"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LOOP.AddParticipantsVC.myContactsModel.getter : Swift.ImplicitlyUnwrappedOptional&lt;LOOP.MyContactsModel&gt;"
+                  moduleName = "LOOP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/AddParticipantsVC.swift"
+                  timestampString = "521447585.759552"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LOOP.AddParticipantsVC.myContactsModel.setter : Swift.ImplicitlyUnwrappedOptional&lt;LOOP.MyContactsModel&gt;"
+                  moduleName = "LOOP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/AddParticipantsVC.swift"
+                  timestampString = "521447585.762378"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "61">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LOOP.AddParticipantsVC.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; LOOP.AddParticipantsVC"
+                  moduleName = "LOOP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/AddParticipantsVC.swift"
+                  timestampString = "521447585.764782"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "233">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LOOP.AddParticipantsVC.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;LOOP.AddParticipantsVC&gt;"
+                  moduleName = "LOOP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/AddParticipantsVC.swift"
+                  timestampString = "521447585.766802"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "159">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

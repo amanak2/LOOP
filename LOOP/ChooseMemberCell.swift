@@ -10,6 +10,7 @@ import UIKit
 
 class ChooseMemberCell: UITableViewCell {
 
+	@IBOutlet weak var personImg: UIImageView!
 	@IBOutlet weak var catagoryLbl: UILabel!
 	@IBOutlet weak var catagoryBtn: UIButton!
 	@IBOutlet weak var personEmailLbl: UILabel!
@@ -18,6 +19,8 @@ class ChooseMemberCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 	
+		personImg.layer.cornerRadius = personImg.frame.size.width / 2
+		personImg.clipsToBounds = true
 	}
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,13 +29,10 @@ class ChooseMemberCell: UITableViewCell {
 		
     }
 	
-	func updateUI(Contacts: [String:Any]) {
-		if let name = Contacts["user_name"] {
-			personNameLbl.text = name as? String
-		}
-		if let email = Contacts["user_email"] {
-			personEmailLbl.text = email as? String
-		}
+	func updateUI(Contacts: MyContactsModel) {
+		personNameLbl.text = Contacts.user
+		personEmailLbl.text = Contacts.email
+		personImg.sd_setImage(with: URL(string: Contacts.profile as String), placeholderImage: UIImage(named: "Mr.Nobody"))
 	}
 	
 	@IBAction func catagoryBtnPressed(_ sender: Any) {

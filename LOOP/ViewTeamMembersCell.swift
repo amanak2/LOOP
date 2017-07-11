@@ -10,12 +10,15 @@ import UIKit
 
 class ViewTeamMembersCell: UITableViewCell {
 
+	@IBOutlet weak var personImg: UIImageView!
 	@IBOutlet weak var personNameLbl: UILabel!
 	@IBOutlet weak var personEmailLbl: UILabel!
 	
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+		
+		personImg.layer.cornerRadius = personImg.frame.size.width / 2
+		personImg.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

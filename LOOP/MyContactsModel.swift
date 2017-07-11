@@ -24,6 +24,13 @@ class MyContactsModel {
 		return _user
 	}
 	
+	var profile: String {
+		if _profile == nil {
+			_profile = ""
+		}
+		return _profile
+	}
+	
 	var email: String {
 		if _email == nil {
 			_email = ""

@@ -10,6 +10,7 @@ import UIKit
 
 class ChooseTeamMemberCell: UITableViewCell {
 
+	@IBOutlet weak var personImg: UIImageView!
 	@IBOutlet weak var catagoryBtn: UIButton!
 	@IBOutlet weak var catagoryLbl: UILabel!
 	@IBOutlet weak var personNameLbl: UILabel!
@@ -18,7 +19,9 @@ class ChooseTeamMemberCell: UITableViewCell {
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+		
+		personImg.layer.cornerRadius = personImg.frame.size.width / 2
+		personImg.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

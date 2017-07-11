@@ -16,6 +16,8 @@ class DisplayMyContacts: UIViewController, UITableViewDelegate, UITableViewDataS
 	var myContactsModel: MyContactsModel!
 	var myContacts = [MyContactsModel]()
 	
+	var email: String!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.delegate = self
@@ -59,7 +61,23 @@ class DisplayMyContacts: UIViewController, UITableViewDelegate, UITableViewDataS
 		} else {
 			return MyContactsCell()
 		}
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let cell = tableView.cellForRow(at: indexPath) as! MyContactsCell
 		
+		if cell.isSelected {
+			email = cell.personEmailLbl.text
+			performSegue(withIdentifier: "MyContactsInfoVC", sender: self)
+		}
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "MyContactsInfoVC" {
+			if let destination = segue.destination as? MyContactsInfoVC {
+				destination.email = self.email
+			}
+		}
 	}
 	
 }

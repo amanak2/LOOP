@@ -11,11 +11,14 @@ import UIKit
 class ProjectCell: UITableViewCell {
 
 	@IBOutlet weak var joinBtn: UIButton!
-	@IBOutlet weak var projectNameLbl: UILabel!
-	@IBOutlet weak var messageLbl: UILabel!
+	@IBOutlet weak var adminNameLbl: UILabel!
+	@IBOutlet weak var msgLbl: UILabel!
+	@IBOutlet weak var timeStampLbl: UILabel!
+	
 	
 	var cellDelegate: MyCellDelegate!
 	var gId: String!
+	var type: String!
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,13 +31,23 @@ class ProjectCell: UITableViewCell {
     }
 	
 	func updateUI(notifications: NotificationModel) {
-		projectNameLbl.text = notifications.adminEmail
-		messageLbl.text = notifications.message
-		gId = notifications.g_id
 		
-		if notifications.type == "OpenProject" {
+		if notifications.type == "group" {
+			joinBtn.isHidden = false
+			timeStampLbl.isHidden = true
+			adminNameLbl.text = notifications.adminEmail
+			msgLbl.text = notifications.message
+			type = notifications.type
+		} else if notifications.type == "OpenProject" {
 			joinBtn.isHidden = true
+			timeStampLbl.isHidden = false
+			adminNameLbl.text = notifications.project
+			msgLbl.text = notifications.description
+			timeStampLbl.text = notifications.timeStamp
+			gId = notifications.g_id
+			type = notifications.type
 		}
+		
 	}
 	
 	@IBAction func joinBtnPressed(_ sender: UIButton) {

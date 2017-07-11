@@ -13,32 +13,41 @@ class ChooseMembersFromMyContactsVC: UIViewController, UITableViewDataSource, UI
 
 	@IBOutlet weak var tableView: UITableView!
 	
-	var myContacts = [[String: Any]]()
+	var myContactsModel: MyContactsModel!
+	var myContacts = [MyContactsModel]()
+	
+	var selected = [MyContactsModel]()
+	
 	var selectedMembers = [String: String]()
 	var projectName: String!
 	var delegate: PassSelectedMembers?
+	var del: PassMyContacts?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.delegate = self
 		tableView.dataSource = self
 		
-		dowloadMyContacts()
+		downloadMyContactsData()
     }
 	
-	func dowloadMyContacts() {
+	func downloadMyContactsData() {
 		Alamofire.request("\(baseURL)frnd_req.php?my_email=rishabh9393@gmail.com", method: .get).responseJSON { response in
 			
-			if let dict = response.result.value as? [[String:Any]]{
-				self.myContacts=dict
-				self.tableView.reloadData()
+			if let dict = response.result.value as? [[String:Any]] {
+				for obj in dict {
+					let myContact = MyContactsModel(getData: obj)
+					self.myContacts.append(myContact)
+				}
 			}
+			self.tableView.reloadData()
 		}
 	}
 	
 	@IBAction func doneBtnPressed(_ sender: Any) {
 		dismiss(animated: true) {
 			self.delegate?.passingMembers(members: self.selectedMembers)
+			self.del?.passingContacts(selects: self.selected)
 		}
 	}
 	
@@ -56,7 +65,6 @@ class ChooseMembersFromMyContactsVC: UIViewController, UITableViewDataSource, UI
 		let myContacts = self.myContacts[indexPath.row]
 		cell?.updateUI(Contacts: myContacts)
 		
-		
 		return cell!
 	}
 	
@@ -68,8 +76,13 @@ class ChooseMembersFromMyContactsVC: UIViewController, UITableViewDataSource, UI
 			let cat = cell.catagoryLbl.text
 			let email = cell.personEmailLbl.text
 			selectedMembers.updateValue(cat!, forKey: email!)
+			selected.append(myContacts[indexPath.row])
 		}
 		
 	}
+	
+	@IBAction func backBtnPressed(_ sender: Any) {
+		dismiss(animated: true, completion: nil)
+	}	
 	
 }

@@ -14,6 +14,7 @@ class TabBarVC: UITabBarController {
         super.viewDidLoad()
 		// ifLoggedIn()
 
+		tabBar.barTintColor = UIColor.black
     }
 	
 //	func ifLoggedIn() {

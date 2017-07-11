@@ -16,16 +16,22 @@ class MeetingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	var notificationModel: NotificationModel?
 	var notifications = [NotificationModel]()
 	
+	var gid: String!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.delegate = self
 		tableView.dataSource = self
-		downloadNotificationData()
-		
     }
 	
+	override func viewWillAppear(_ animated: Bool) {
+		self.notifications.removeAll()
+		self.downloadNotificationData()
+		self.tableView.reloadData()
+	}
+	
 	func downloadNotificationData() {
-		Alamofire.request("\(baseURL)notification.php?my_email=arunkshk07@gmail.com", method: .get).responseJSON { response in
+		Alamofire.request("\(baseURL)notification.php?my_email=rishabh9393@gmail.com", method: .get).responseJSON { response in
 			
 			if let dict = response.result.value as? [[String:Any]] {
 				for obj in dict {
@@ -53,6 +59,23 @@ class MeetingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return notifications.count
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let cell = tableView.cellForRow(at: indexPath) as! MeetingCell
+		
+		if cell.isSelected {
+			gid = cell.gid
+			performSegue(withIdentifier: "MeetingDescriptionVC", sender: self)
+		}
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "MeetingDescriptionVC" {
+			if let destination = segue.destination as? MeetingDescriptionVC {
+				destination.gid = self.gid
+			}
+		}
 	}
 
 }

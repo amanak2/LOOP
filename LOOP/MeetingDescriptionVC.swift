@@ -9,8 +9,9 @@
 import UIKit
 import Alamofire
 
-class MeetingDescriptionVC: UIViewController {
+class MeetingDescriptionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+	@IBOutlet weak var meetingType: UILabel!
 	@IBOutlet weak var participantsCountLbl: UILabel!
 	@IBOutlet weak var mediaCountLbl: UIButton!
 	@IBOutlet weak var typeLbl: UILabel!
@@ -20,36 +21,50 @@ class MeetingDescriptionVC: UIViewController {
 	
 	@IBOutlet weak var collectionView: UICollectionView!
 	
-	var gid: String!
-	var notificationModel: NotificationModel!
+	var meetingTit: String!
+	var date: String!
+	var time: String!
+	var users = [NotificationUsers]()
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		collectionView.delegate = self
+		collectionView.dataSource = self
 		
     }
 	
 	override func viewDidAppear(_ animated: Bool) {
-		downloadNotificationData()
+		super.viewDidAppear(true)
+		
+		meetingTitleLbl.text = meetingTit
+		dateLbl.text = date
+		timeLbl.text = time
+		collectionView.reloadData()
 	}
 	
-	func downloadNotificationData() {
-		Alamofire.request("\(baseURL)notification.php?my_email=rishabh9393@gmail.com", method: .get).responseJSON { response in
+	func numberOfSections(in collectionView: UICollectionView) -> Int {
+		return 1
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return users.count
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MeetingDescriptionCell", for: indexPath) as? MeetingDescriptionCell {
 			
-			if let dict = response.result.value as? [[String:Any]] {
-				for obj in dict {
-					let notification = NotificationModel(getData: obj)
-					if notification.g_id == self.gid || notification.type == "OpenMeeting" {
-						
-						self.meetingTitleLbl.text = notification.topic
-						self.dateLbl.text = notification.date
-						self.timeLbl.text = notification.time
-					}
-				}
-			}
+			let user = self.users[indexPath.row]
+			cell.updateUI(user: user)
+			
+			return cell
+		} else {
+			return MeetingDescriptionCell()
 		}
 	}
 	
-	@IBAction func deleteBtnPressed(_ sender: Any) {
+	@IBAction func deleteBtnPressed(_ sender: Any){
+		//delete project
+	
 	}
 	
 	@IBAction func backBtnPressed(_ sender: Any) {
@@ -57,5 +72,6 @@ class MeetingDescriptionVC: UIViewController {
 	}
 	
 	@IBAction func viewMediaBtnPressed(_ sender: Any) {
+		//View Media in Group
 	}
 }

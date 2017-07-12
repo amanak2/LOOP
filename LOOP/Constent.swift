@@ -12,7 +12,7 @@ let baseURL = "http://35.154.30.238/smokeApi/code/"
 let myEmail = UserDefaults.standard.object(forKey: "email") as? String
 let firstname = UserDefaults.standard.object(forKey: "firstname") as? String
 let lastname = UserDefaults.standard.object(forKey: "lastname") as? String
-let adminName = "\(firstname!) \(lastname!)"
+let myName = "\(firstname!) \(lastname!)"
 
 typealias downloadComplete = () -> ()
 

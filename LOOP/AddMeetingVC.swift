@@ -52,6 +52,8 @@ class AddMeetingVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
 			addParticipantsBtn.isHidden = true
 		}
 		
+		
+		
 		collectionView.reloadData()
 		dataPickerView.isHidden = true
 	}
@@ -161,24 +163,23 @@ class AddMeetingVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
 			"settime":currentTime as String,
 			"scheduletime":setTime as String,
 			"agenda":agendaTextField.text!,
-			"adminname":"rishabh",
+			"adminname":"\(firstname!)",
 			"type":"meeting",
 			"users" : "[\(smembers.joined(separator: ","))]",
-			"adminemail":"rishabh9393@gmail.com"
+			"adminemail":"\(myEmail!)"
 		]
 		
 		print(parameters)
 		
 		Alamofire.request("\(baseURL)meeting_shedule.php",method: .post, parameters: parameters,encoding: JSONEncoding.default).responseJSON { response in
 			
-			print(response)
-			if let dict = response.result.value as? Dictionary<String, AnyObject> {
-				let topic = dict["topic"] as? String
-				let g_id = dict["g_id"] as? String
-				
-				self.storeMeeting(topic: topic!, g_id: g_id!)
-				
-			}
+//			if let dict = response.result.value as? Dictionary<String, AnyObject> {
+//				let topic = dict["topic"] as? String
+//				let g_id = dict["g_id"] as? String
+//				
+//				self.storeMeeting(topic: topic!, g_id: g_id!)
+//				
+//			}
 		}
 		
 		dismiss(animated: true, completion: nil)

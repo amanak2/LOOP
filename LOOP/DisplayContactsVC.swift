@@ -31,7 +31,8 @@ class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataS
 		let keysToFetch = [
 			CNContactFormatter.descriptorForRequiredKeys(for: .fullName),
 			CNContactEmailAddressesKey,
-			CNContactImageDataAvailableKey] as [Any]
+			CNContactImageDataAvailableKey
+			] as [Any]
 		
 		// Get all the containers
 		var allContainers: [CNContainer] = []
@@ -90,7 +91,7 @@ class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataS
 			"email": contact.emailAddresses.first?.value as String!
 		]
 		
-		Alamofire.request("\(baseURL)frndsSystem.php?action=send&my_email=rishabh9393@gmail.com", method: .post, parameters: parameters).responseJSON { response in
+		Alamofire.request("\(baseURL)frndsSystem.php?action=send&my_email=\(myEmail!)", method: .post, parameters: parameters).responseJSON { response in
 		
 			if let dict = response.result.value as? Dictionary<String, AnyObject> {
 				

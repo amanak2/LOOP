@@ -99,23 +99,23 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 	
 	@IBAction func createProjectBtnPressed(_ sender: Any) {
 		let parameters: Parameters = [
-			"topic" : projectNameTextField,
-			"adminname" : "rishabh",
+			"topic" : projectNameTextField.text!,
+			"adminname" : "\(firstname!)",
 			"type" : "meeting",
 			"users" : "[\(smembers.joined(separator: ","))]",
-			"adminemail" : "rishabh9393@gmail.com",
-			"description": projectDescriptionTextView
+			"adminemail" : "\(myEmail!)",
+			"description": projectDescriptionTextView.text!
 		]
 		print(parameters)
 		
 		Alamofire.request("\(baseURL)user_group.php", method: .post, parameters: parameters).responseJSON { response in
-			if let dict = response.result.value as? Dictionary<String, AnyObject> {
-				let topic = dict["project"] as? String
-				let g_id = dict["g_id"] as? String
-				let description = dict["description"] as? String
-				
-				self.saveData(topic: topic!, g_id: g_id!, desription: description!)
-			}
+//			if let dict = response.result.value as? Dictionary<String, AnyObject> {
+//				let topic = dict["project"] as? String
+//				let g_id = dict["g_id"] as? String
+//				let description = dict["description"] as? String
+//				
+//				self.saveData(topic: topic!, g_id: g_id!, desription: description!)
+//			}
 			
 		}
 	}

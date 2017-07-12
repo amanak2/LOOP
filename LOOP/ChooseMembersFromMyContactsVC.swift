@@ -32,7 +32,7 @@ class ChooseMembersFromMyContactsVC: UIViewController, UITableViewDataSource, UI
     }
 	
 	func downloadMyContactsData() {
-		Alamofire.request("\(baseURL)frnd_req.php?my_email=rishabh9393@gmail.com", method: .get).responseJSON { response in
+		Alamofire.request("\(baseURL)frnd_req.php?my_email=\(myEmail!)", method: .get).responseJSON { response in
 			
 			if let dict = response.result.value as? [[String:Any]] {
 				for obj in dict {

@@ -24,6 +24,9 @@ class signupVC: UIViewController {
 		passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
 		emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
 		confirmPasswordTextField.attributedPlaceholder = NSAttributedString(string: "Confirm Password", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+		
+		passwordTextField.isSecureTextEntry = true
+		confirmPasswordTextField.isSecureTextEntry = true
 
     }
 	

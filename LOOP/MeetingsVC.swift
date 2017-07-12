@@ -16,7 +16,10 @@ class MeetingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	var notificationModel: NotificationModel?
 	var notifications = [NotificationModel]()
 	
-	var gid: String!
+	var meetingTit: String!
+	var time: String!
+	var date: String!
+	var users = [NotificationUsers]()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +34,7 @@ class MeetingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	}
 	
 	func downloadNotificationData() {
-		Alamofire.request("\(baseURL)notification.php?my_email=rishabh9393@gmail.com", method: .get).responseJSON { response in
+		Alamofire.request("\(baseURL)notification.php?my_email=\(myEmail!)", method: .get).responseJSON { response in
 			
 			if let dict = response.result.value as? [[String:Any]] {
 				for obj in dict {
@@ -65,7 +68,11 @@ class MeetingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 		let cell = tableView.cellForRow(at: indexPath) as! MeetingCell
 		
 		if cell.isSelected {
-			gid = cell.gid
+			meetingTit = cell.meetingTit
+			time = cell.time
+			date = cell.date
+			users = cell.users
+			
 			performSegue(withIdentifier: "MeetingDescriptionVC", sender: self)
 		}
 	}
@@ -73,7 +80,10 @@ class MeetingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "MeetingDescriptionVC" {
 			if let destination = segue.destination as? MeetingDescriptionVC {
-				destination.gid = self.gid
+				destination.meetingTit = self.meetingTit
+				destination.date = self.date
+				destination.time = self.time
+				destination.users = self.users
 			}
 		}
 	}

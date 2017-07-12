@@ -19,13 +19,13 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.delegate = self
-		tableView.dataSource = self 
+		tableView.dataSource = self
 		
 		downloadNotificationData()
     }
 	
 	func downloadNotificationData() {
-		Alamofire.request("\(baseURL)notification.php?my_email=rishabh9393@gmail.com", method: .get).responseJSON { response in
+		Alamofire.request("\(baseURL)notification.php?my_email=\(myEmail)", method: .get).responseJSON { response in
 			
 			if let dict = response.result.value as? [[String:Any]] {
 				for obj in dict {

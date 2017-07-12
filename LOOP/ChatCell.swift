@@ -19,7 +19,9 @@ class ChatCell: UITableViewCell {
  
 	override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+		
+		userImg.layer.cornerRadius = userImg.frame.size.width / 2
+		userImg.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

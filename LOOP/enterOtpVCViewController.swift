@@ -27,7 +27,7 @@ class enterOtpVCViewController: UIViewController {
 			"otp" : enterOtpTextField.text!
 		]
 		
-		Alamofire.request("\(baseURL)/varify_otp.php", method: .post, parameters: parameters).responseJSON { response in
+		Alamofire.request("\(baseURL)varify_otp.php", method: .post, parameters: parameters).responseJSON { response in
 			
 			if let dict = response.result.value as? Dictionary<String, AnyObject> {
 				

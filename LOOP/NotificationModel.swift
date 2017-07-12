@@ -18,18 +18,13 @@ class NotificationModel {
 	private var _adminName: String!
 	private var _date: String!
 	private var _time: String!
-	private var _users = [String: String]()
 	private var _description: String!
 	private var _timeStamp: String!
 	private var _project: String!
 	private var _from_email: String!
 	
-	var user: Dictionary<String, String> {
-		if _users.isEmpty {
-			print(Error.self)
-		}
-		return _users
-	}
+	var notificationUsers: NotificationUsers!
+	var users = [NotificationUsers]()
 	
 	var g_id: String {
 		if _g_id == nil {
@@ -165,14 +160,13 @@ class NotificationModel {
 			self._from_email = from_email
 		}
 		
-		if let user = getData["users"] as? [Dictionary<String, AnyObject>] {
-		
-			let userEmail = user[0]["email"] as? String
-			let userCat = user[0]["category"] as? String
-		
-			self._users.updateValue(userCat!, forKey: userEmail!)
+		if let user = getData["users"] as? [[String: Any]] {
+			for obj in user {
+				let user = NotificationUsers(data: obj)
+				self.users.append(user)
+			}
 		}
 
 	}
 }
-			
+

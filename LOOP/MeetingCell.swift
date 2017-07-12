@@ -13,7 +13,11 @@ class MeetingCell: UITableViewCell {
 	@IBOutlet weak var meetingTypeLbl: UILabel!
 	@IBOutlet weak var meetingTopicsLbl: UILabel!
 	
-	var gid: String!
+	var meetingTit: String!
+	var time: String!
+	var date: String!
+	
+	var users = [NotificationUsers]()
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,7 +33,10 @@ class MeetingCell: UITableViewCell {
 	func updateUI(notification: NotificationModel) {
 		meetingTopicsLbl.text = notification.topic
 		meetingTypeLbl.text = notification.message
-		gid = notification.g_id
+		meetingTit = notification.topic
+		time = notification.time
+		date = notification.date
+		users = notification.users
 	}
 
 }

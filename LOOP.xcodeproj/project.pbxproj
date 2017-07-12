@@ -47,6 +47,8 @@
 		92D5B7321EEA7EEC00E4BD5D /* MeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5B7311EEA7EEC00E4BD5D /* MeetingCell.swift */; };
 		92D5B7341EEAA75C00E4BD5D /* ChooseMembersFromMyContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5B7331EEAA75C00E4BD5D /* ChooseMembersFromMyContactsVC.swift */; };
 		92D5B7361EEAA7B600E4BD5D /* ChooseMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5B7351EEAA7B600E4BD5D /* ChooseMemberCell.swift */; };
+		92E2E4731F15FDF2004E70C3 /* NotificationUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E2E4721F15FDF2004E70C3 /* NotificationUsers.swift */; };
+		92E2E4771F16066A004E70C3 /* MeetingDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E2E4761F16066A004E70C3 /* MeetingDescriptionCell.swift */; };
 		92F51E141EEFD3C700F9DAEF /* ViewTeamMembersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F51E131EEFD3C700F9DAEF /* ViewTeamMembersVC.swift */; };
 		92F51E161EF000C700F9DAEF /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F51E151EF000C700F9DAEF /* ProjectCell.swift */; };
 		92F51E191EF0047B00F9DAEF /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F51E181EF0047B00F9DAEF /* NotificationModel.swift */; };
@@ -101,6 +103,8 @@
 		92D5B7311EEA7EEC00E4BD5D /* MeetingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingCell.swift; sourceTree = "<group>"; };
 		92D5B7331EEAA75C00E4BD5D /* ChooseMembersFromMyContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseMembersFromMyContactsVC.swift; sourceTree = "<group>"; };
 		92D5B7351EEAA7B600E4BD5D /* ChooseMemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseMemberCell.swift; sourceTree = "<group>"; };
+		92E2E4721F15FDF2004E70C3 /* NotificationUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationUsers.swift; sourceTree = "<group>"; };
+		92E2E4761F16066A004E70C3 /* MeetingDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingDescriptionCell.swift; sourceTree = "<group>"; };
 		92F51E131EEFD3C700F9DAEF /* ViewTeamMembersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTeamMembersVC.swift; sourceTree = "<group>"; };
 		92F51E151EF000C700F9DAEF /* ProjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		92F51E181EF0047B00F9DAEF /* NotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
@@ -173,8 +177,8 @@
 				92C7E6771EDEA4C200D7170A /* MainVC.swift */,
 				92C7E68A1EDEB03500D7170A /* signinVC.swift */,
 				92C7E68C1EDEB04700D7170A /* signupVC.swift */,
-				92C7E69A1EE0349000D7170A /* forgetpassVC.swift */,
 				92C2B9811F0513DD00C7C21E /* enterOtpVCViewController.swift */,
+				92C7E69A1EE0349000D7170A /* forgetpassVC.swift */,
 				92C7E6A61EE146F300D7170A /* ChatVC.swift */,
 				92C7E69E1EE13ACF00D7170A /* ProjectsVC.swift */,
 				927A69981F0BAB9F0005E204 /* ProjectDesciptionVC.swift */,
@@ -215,6 +219,7 @@
 				92AAFE431F0E1FF10077F142 /* AddParticipantsCell.swift */,
 				92AAFE451F0E202E0077F142 /* AddedParticipantsCell.swift */,
 				92102D341F14B01400127EE4 /* MparticipantsCell.swift */,
+				92E2E4761F16066A004E70C3 /* MeetingDescriptionCell.swift */,
 				92102D3C1F14F16800127EE4 /* ChatCell.swift */,
 			);
 			name = View;
@@ -224,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				92F51E181EF0047B00F9DAEF /* NotificationModel.swift */,
+				92E2E4721F15FDF2004E70C3 /* NotificationUsers.swift */,
 				927A699A1F0CBE8C0005E204 /* MyContactsModel.swift */,
 			);
 			name = Model;
@@ -378,6 +384,7 @@
 				92D5B72C1EE7D0B800E4BD5D /* AddMembersCell.swift in Sources */,
 				92C7E69B1EE0349000D7170A /* forgetpassVC.swift in Sources */,
 				92102D3B1F14DDAE00127EE4 /* MyContactsInfoVC.swift in Sources */,
+				92E2E4771F16066A004E70C3 /* MeetingDescriptionCell.swift in Sources */,
 				92C7E68D1EDEB04700D7170A /* signupVC.swift in Sources */,
 				92C7E6781EDEA4C200D7170A /* MainVC.swift in Sources */,
 				92F51E1E1EF151F900F9DAEF /* ChooseTeamMemberVC.swift in Sources */,
@@ -394,6 +401,7 @@
 				92D5B7281EE6D0C300E4BD5D /* CreateTeamVC.swift in Sources */,
 				92D5B7341EEAA75C00E4BD5D /* ChooseMembersFromMyContactsVC.swift in Sources */,
 				92AAFE441F0E1FF10077F142 /* AddParticipantsCell.swift in Sources */,
+				92E2E4731F15FDF2004E70C3 /* NotificationUsers.swift in Sources */,
 				92F51E1C1EF14ACC00F9DAEF /* SelectTeamVC.swift in Sources */,
 				92D5B7111EE5236B00E4BD5D /* DisplayContactsVC.swift in Sources */,
 				92C7E6A71EE146F300D7170A /* ChatVC.swift in Sources */,

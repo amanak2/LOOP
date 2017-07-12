@@ -32,4 +32,8 @@ class EditProfileVC: UIViewController {
 		//Save Button
 	}
 	
+	@IBAction func backBtnPressed(_ sender: Any) {
+		dismiss(animated: true, completion: nil)
+	}
+	
 }

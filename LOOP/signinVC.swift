@@ -20,6 +20,8 @@ class signinVC: UIViewController {
 		
 		userTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
 		passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+		
+		passwordTextField.isSecureTextEntry = true
     }
 	
 	

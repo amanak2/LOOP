@@ -34,7 +34,7 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	
 	//Download Notifications
 	func downloadNotificationData() {
-		Alamofire.request("\(baseURL)notification.php?my_email=rishabh9393@gmail.com", method: .get).responseJSON { response in
+		Alamofire.request("\(baseURL)notification.php?my_email=\(myEmail!)", method: .get).responseJSON { response in
 			
 			if let dict = response.result.value as? [[String:Any]] {
 				for obj in dict {
@@ -102,7 +102,7 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		
 		let parameters: Parameters = [
 			"g_id" : notification.g_id,
-			"email" : "rishabh9393@gmail.com",
+			"email" : "\(myEmail!)",
 			"type" : notification.type
 		]
 		

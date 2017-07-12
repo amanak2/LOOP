@@ -12,23 +12,23 @@ class TabBarVC: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		// ifLoggedIn()
-
+		ifLoggedIn()
+		
 		tabBar.barTintColor = UIColor.black
     }
-	
-//	func ifLoggedIn() {
-//		if UserDefaults.standard.bool(forKey: "ifLoggedIn") != true {
-//			DispatchQueue.main.async() {
-//				[unowned self] in
-//				self.performSegue(withIdentifier: "MainVC", sender: self)
-//			}
-//		} else if UserDefaults.standard.bool(forKey: "otpSent") == true {
-//			DispatchQueue.main.async() {
-//				[unowned self] in
-//				self.performSegue(withIdentifier: "otpNotSubmitted", sender: self)
-//			}
-//		}
-//	}
 
+	
+	func ifLoggedIn() {
+		if UserDefaults.standard.bool(forKey: "ifLoggedIn") != true {
+			DispatchQueue.main.async() {
+				[unowned self] in
+				self.performSegue(withIdentifier: "MainVC", sender: self)
+			}
+		} else if UserDefaults.standard.bool(forKey: "otpSent") == true {
+			DispatchQueue.main.async() {
+				[unowned self] in
+				self.performSegue(withIdentifier: "OtpNotSubmitted", sender: self)
+			}
+		}
+	}
 }

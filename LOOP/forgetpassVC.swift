@@ -17,9 +17,18 @@ class forgetpassVC: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(forgetpassVC.dismissKeyboard))
+		tap.cancelsTouchesInView = false
+		view.addGestureRecognizer(tap)
+		
 		emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
 		
     }
+	
+	func dismissKeyboard() {
+		view.endEditing(true)
+	}
 
 	@IBAction func findpassBtnPressed(_ sender: Any) {
 		let parameters: Parameters = [

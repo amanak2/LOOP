@@ -18,12 +18,19 @@ class signinVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(signinVC.dismissKeyboard))
+		tap.cancelsTouchesInView = false
+		view.addGestureRecognizer(tap)
+		
 		userTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
 		passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
 		
 		passwordTextField.isSecureTextEntry = true
     }
 	
+	func dismissKeyboard() {
+		view.endEditing(true)
+	}
 	
 	@IBAction func signInBtnPressed(_ sender: Any) {
 		let parameters: Parameters = [

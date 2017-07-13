@@ -19,7 +19,7 @@
 		92AAFE421F0E1B880077F142 /* AddParticipantsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AAFE411F0E1B880077F142 /* AddParticipantsVC.swift */; };
 		92AAFE441F0E1FF10077F142 /* AddParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AAFE431F0E1FF10077F142 /* AddParticipantsCell.swift */; };
 		92AAFE461F0E202E0077F142 /* AddedParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AAFE451F0E202E0077F142 /* AddedParticipantsCell.swift */; };
-		92C2B9821F0513DD00C7C21E /* enterOtpVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C2B9811F0513DD00C7C21E /* enterOtpVCViewController.swift */; };
+		92C2B9821F0513DD00C7C21E /* enterOtpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C2B9811F0513DD00C7C21E /* enterOtpVC.swift */; };
 		92C7E6761EDEA4C200D7170A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C7E6751EDEA4C200D7170A /* AppDelegate.swift */; };
 		92C7E6781EDEA4C200D7170A /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C7E6771EDEA4C200D7170A /* MainVC.swift */; };
 		92C7E67B1EDEA4C200D7170A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92C7E6791EDEA4C200D7170A /* Main.storyboard */; };
@@ -73,7 +73,7 @@
 		92AAFE411F0E1B880077F142 /* AddParticipantsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddParticipantsVC.swift; sourceTree = "<group>"; };
 		92AAFE431F0E1FF10077F142 /* AddParticipantsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddParticipantsCell.swift; sourceTree = "<group>"; };
 		92AAFE451F0E202E0077F142 /* AddedParticipantsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddedParticipantsCell.swift; sourceTree = "<group>"; };
-		92C2B9811F0513DD00C7C21E /* enterOtpVCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enterOtpVCViewController.swift; sourceTree = "<group>"; };
+		92C2B9811F0513DD00C7C21E /* enterOtpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enterOtpVC.swift; sourceTree = "<group>"; };
 		92C7E6721EDEA4C200D7170A /* LOOP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LOOP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92C7E6751EDEA4C200D7170A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92C7E6771EDEA4C200D7170A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 				92C7E6771EDEA4C200D7170A /* MainVC.swift */,
 				92C7E68A1EDEB03500D7170A /* signinVC.swift */,
 				92C7E68C1EDEB04700D7170A /* signupVC.swift */,
-				92C2B9811F0513DD00C7C21E /* enterOtpVCViewController.swift */,
+				92C2B9811F0513DD00C7C21E /* enterOtpVC.swift */,
 				92C7E69A1EE0349000D7170A /* forgetpassVC.swift */,
 				92C7E6A61EE146F300D7170A /* ChatVC.swift */,
 				92C7E69E1EE13ACF00D7170A /* ProjectsVC.swift */,
@@ -379,7 +379,7 @@
 				927A69991F0BAB9F0005E204 /* ProjectDesciptionVC.swift in Sources */,
 				92D5B70F1EE4278700E4BD5D /* TabBarVC.swift in Sources */,
 				92C7E6A51EE13B5700D7170A /* SettingsVC.swift in Sources */,
-				92C2B9821F0513DD00C7C21E /* enterOtpVCViewController.swift in Sources */,
+				92C2B9821F0513DD00C7C21E /* enterOtpVC.swift in Sources */,
 				92C7E67E1EDEA4C200D7170A /* LOOP.xcdatamodeld in Sources */,
 				92D5B72C1EE7D0B800E4BD5D /* AddMembersCell.swift in Sources */,
 				92C7E69B1EE0349000D7170A /* forgetpassVC.swift in Sources */,

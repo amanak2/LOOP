@@ -19,7 +19,7 @@ class SettingsVC: UIViewController {
 		userImage.layer.cornerRadius = userImage.frame.size.width / 2
 		userImage.clipsToBounds = true
 		
-		userNameLbl.text = firstname!
+		userNameLbl.text = firstname
     }
 	
 	@IBAction func editBtnPressed(_ sender: Any) {

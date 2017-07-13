@@ -24,14 +24,28 @@ class DisplayMyContacts: UIViewController, UITableViewDelegate, UITableViewDataS
 		tableView.dataSource = self
 		
 		downloadMyContactsData()
+		emptyContacts()
     }
+	
+	func emptyContacts() {
+		if myContacts.isEmpty == true {
+			let alert = UIAlertController(title: "No Friends", message: "Please invite friends from contacts", preferredStyle: .alert)
+			
+			let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in
+				self.dismiss(animated: true, completion: nil)
+			}
+			
+			alert.addAction(okBtn)
+			self.present(alert, animated: true, completion: nil)
+		}
+	}
 
 	@IBAction func backBtn(_ sender: Any) {
 		dismiss(animated: true, completion: nil)
 	}
 	
 	func downloadMyContactsData() {
-		Alamofire.request("\(baseURL)frnd_req.php?my_email=\(myEmail!)", method: .get).responseJSON { response in
+		Alamofire.request("\(baseURL)frnd_req.php?my_email=\(myEmail)", method: .get).responseJSON { response in
 			
 			if let dict = response.result.value as? [[String:Any]] {
 				for obj in dict {

@@ -13,6 +13,7 @@ class TabBarVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		ifLoggedIn()
+		//dummyData()
 		
 		tabBar.barTintColor = UIColor.black
     }
@@ -30,5 +31,16 @@ class TabBarVC: UITabBarController {
 				self.performSegue(withIdentifier: "OtpNotSubmitted", sender: self)
 			}
 		}
+	}
+	
+	func dummyData() {
+		UserDefaults.standard.set("", forKey: "email")
+		UserDefaults.standard.set("", forKey: "firstname")
+		UserDefaults.standard.set("", forKey: "lastname")
+		UserDefaults.standard.set("" , forKey: "modile")
+		UserDefaults.standard.set("" , forKey: "office")
+		UserDefaults.standard.set("" , forKey: "designation")
+		UserDefaults.standard.set("", forKey: "profile")
+		UserDefaults.standard.synchronize()
 	}
 }

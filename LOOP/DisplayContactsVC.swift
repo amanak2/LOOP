@@ -10,10 +10,6 @@ import UIKit
 import Contacts
 import Alamofire
 
-protocol YourCellDelegate: class {
-	func didPressButton(_ tag: Int)
-}
-
 class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,YourCellDelegate {
 
 	@IBOutlet weak var tableView: UITableView!
@@ -91,32 +87,33 @@ class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataS
 			"email": contact.emailAddresses.first?.value as String!
 		]
 		
-		Alamofire.request("\(baseURL)frndsSystem.php?action=send&my_email=\(myEmail!)", method: .post, parameters: parameters).responseJSON { response in
+		Alamofire.request("\(baseURL)frndsSystem.php?action=send&my_email=\(myEmail)", method: .post, parameters: parameters).responseJSON { response in
 		
 			if let dict = response.result.value as? Dictionary<String, AnyObject> {
 				
 				let msg = dict["msg"] as? String
 				
-				if let Status = dict["status"] as? Int {
-					if Status == 200 {
-						// request sent
-						let alert = UIAlertController(title: "Invite", message: "Invite sent", preferredStyle: .alert)
+				let Status = dict["status"] as? String
+				
+				if Status == "200" {
+					// request sent
+					let alert = UIAlertController(title: "Invite", message: "Invite sent", preferredStyle: .alert)
+					
+					let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
 						
-						let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
+					alert.addAction(okBtn)
+					self.present(alert, animated: true, completion: nil)
+					
+				} else {
+					// Failed
+					let alert = UIAlertController(title: "Invite", message: msg, preferredStyle: .alert)
 						
-						alert.addAction(okBtn)
-						self.present(alert, animated: true, completion: nil)
+					let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
 						
-					} else {
-						// Failed
-						let alert = UIAlertController(title: "Invite", message: msg, preferredStyle: .alert)
-						
-						let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
-						
-						alert.addAction(okBtn)
-						self.present(alert, animated: true, completion: nil)
-					}
+					alert.addAction(okBtn)
+					self.present(alert, animated: true, completion: nil)
 				}
+				
 			}
 		}
 	}

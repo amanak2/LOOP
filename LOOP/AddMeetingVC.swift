@@ -36,12 +36,21 @@ class AddMeetingVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddMeetingVC.dismissKeyboard))
+		tap.cancelsTouchesInView = false
+		view.addGestureRecognizer(tap)
+		
 		collectionView.delegate = self
 		collectionView.dataSource = self
 		
 		getCurrentDate()
 		getCurrentTime()
     }
+	
+	func dismissKeyboard() {
+		view.endEditing(true)
+	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(true)
@@ -163,10 +172,10 @@ class AddMeetingVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
 			"settime":currentTime as String,
 			"scheduletime":setTime as String,
 			"agenda":agendaTextField.text!,
-			"adminname":"\(firstname!)",
+			"adminname":"\(firstname)",
 			"type":"meeting",
 			"users" : "[\(smembers.joined(separator: ","))]",
-			"adminemail":"\(myEmail!)"
+			"adminemail":"\(myEmail)"
 		]
 		
 		print(parameters)

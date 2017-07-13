@@ -29,6 +29,17 @@ class CreateTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 			names = Array(team.keys)
 		}
 	}
+	
+	func emptyContacts() {
+		if names.isEmpty == true {
+			let alert = UIAlertController(title: "No Teams", message: "Please Create Teams", preferredStyle: .alert)
+			
+			let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
+			
+			alert.addAction(okBtn)
+			self.present(alert, animated: true, completion: nil)
+		}
+	}
 
 	@IBAction func backBtn(_ sender: Any) {
 		dismiss(animated: true, completion: nil)

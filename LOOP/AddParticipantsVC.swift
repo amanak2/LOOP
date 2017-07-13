@@ -35,7 +35,7 @@ class AddParticipantsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 	
 	func downloadMyContactsData() {
-		Alamofire.request("\(baseURL)frnd_req.php?my_email=\(myEmail!)", method: .get).responseJSON { response in
+		Alamofire.request("\(baseURL)frnd_req.php?my_email=\(myEmail)", method: .get).responseJSON { response in
 			
 			if let dict = response.result.value as? [[String:Any]] {
 				for obj in dict {

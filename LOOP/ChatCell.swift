@@ -16,7 +16,8 @@ class ChatCell: UITableViewCell {
 	@IBOutlet weak var timeStampLbl: UILabel!
 	@IBOutlet weak var acceptBtn: UIButton!
 	
- 
+	var cellDelegate: YourCellDelegate!
+	
 	override func awakeFromNib() {
         super.awakeFromNib()
 		
@@ -31,7 +32,7 @@ class ChatCell: UITableViewCell {
     }
 
 	@IBAction func acceptBtnPressed(_ sender: UIButton) {
-		
+		cellDelegate?.didPressButton(self.tag)
 	}
 
 	func updateUI(update: NotificationModel) {

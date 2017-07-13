@@ -28,9 +28,18 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddProjectVC.dismissKeyboard))
+		tap.cancelsTouchesInView = false
+		view.addGestureRecognizer(tap)
+		
 		collectionView.delegate = self
 		collectionView.dataSource = self
     }
+	
+	func dismissKeyboard() {
+		view.endEditing(true)
+	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(true)
@@ -99,12 +108,14 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 	
 	@IBAction func createProjectBtnPressed(_ sender: Any) {
 		let parameters: Parameters = [
-			"topic" : projectNameTextField.text!,
-			"adminname" : "\(firstname!)",
-			"type" : "meeting",
+			"Project" : projectNameTextField.text!,
+			"adminemail" : "\(firstname)",
+			"type" : "group",
 			"users" : "[\(smembers.joined(separator: ","))]",
-			"adminemail" : "\(myEmail!)",
-			"description": projectDescriptionTextView.text!
+			"adminemail" : "\(myEmail)",
+			"description": projectDescriptionTextView.text!,
+			"ext" : "",
+			"g_profile" : ""
 		]
 		print(parameters)
 		

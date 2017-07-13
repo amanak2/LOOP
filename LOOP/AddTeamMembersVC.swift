@@ -27,7 +27,7 @@ class AddTeamMembersVC: UIViewController,UITableViewDelegate, UITableViewDataSou
     }
 	
 	func dowloadMyContacts() {
-		Alamofire.request("\(baseURL)frnd_req.php?my_email=\(myEmail!)", method: .get).responseJSON { response in
+		Alamofire.request("\(baseURL)frnd_req.php?my_email=\(myEmail)", method: .get).responseJSON { response in
 			
 			if let dict = response.result.value as? [[String:Any]]{
 				self.myContacts=dict

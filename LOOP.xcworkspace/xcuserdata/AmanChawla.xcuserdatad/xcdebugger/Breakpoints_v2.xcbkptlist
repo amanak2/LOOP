@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LOOP/AddProjectVC.swift"
-            timestampString = "521622884.839248"
+            timestampString = "521983445.223146"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "passingContacts(selects:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LOOP/MeetingsVC.swift"
-            timestampString = "521553077.544551"
+            timestampString = "521726947.479541"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -168,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LOOP/MeetingsVC.swift"
-            timestampString = "521553077.544551"
+            timestampString = "521726947.479541"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LOOP/MeetingsVC.swift"
-            timestampString = "521553077.544551"
+            timestampString = "521726947.479541"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -200,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LOOP/MeetingsVC.swift"
-            timestampString = "521553077.544551"
+            timestampString = "521726947.479541"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -232,12 +232,12 @@
                   moduleName = "LOOP"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/enterOtpVC.swift"
-                  timestampString = "521637105.245191"
+                  timestampString = "522134679.216206"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "17"
                   endingLineNumber = "17"
-                  offsetFromSymbolStart = "88">
+                  offsetFromSymbolStart = "83">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -247,12 +247,12 @@
                   moduleName = "LOOP"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/enterOtpVC.swift"
-                  timestampString = "521637105.247706"
+                  timestampString = "522134679.219067"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "17"
                   endingLineNumber = "17"
-                  offsetFromSymbolStart = "180">
+                  offsetFromSymbolStart = "175">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -262,12 +262,12 @@
                   moduleName = "LOOP"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/enterOtpVC.swift"
-                  timestampString = "521637105.250256"
+                  timestampString = "522134679.222465"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "17"
                   endingLineNumber = "17"
-                  offsetFromSymbolStart = "248">
+                  offsetFromSymbolStart = "256">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -277,12 +277,12 @@
                   moduleName = "LOOP"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/enterOtpVC.swift"
-                  timestampString = "521637105.252362"
+                  timestampString = "522134679.22565"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "17"
                   endingLineNumber = "17"
-                  offsetFromSymbolStart = "184">
+                  offsetFromSymbolStart = "170">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -310,12 +310,12 @@
                   moduleName = "LOOP"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/enterOtpVC.swift"
-                  timestampString = "521637105.26002"
+                  timestampString = "522134679.233848"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "40"
                   endingLineNumber = "40"
-                  offsetFromSymbolStart = "840">
+                  offsetFromSymbolStart = "924">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -325,12 +325,218 @@
                   moduleName = "LOOP"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/enterOtpVC.swift"
-                  timestampString = "521637105.262529"
+                  timestampString = "522134679.235925"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "42"
                   endingLineNumber = "42"
-                  offsetFromSymbolStart = "24">
+                  offsetFromSymbolStart = "26">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LOOP/MeetingDescriptionVC.swift"
+            timestampString = "521704334.246192"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "MeetingDescriptionVC"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LOOP.MeetingDescriptionVC.users.getter : Swift.Array&lt;LOOP.NotificationUsers&gt;"
+                  moduleName = "LOOP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/MeetingDescriptionVC.swift"
+                  timestampString = "522134679.2415"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LOOP.MeetingDescriptionVC.users.setter : Swift.Array&lt;LOOP.NotificationUsers&gt;"
+                  moduleName = "LOOP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/MeetingDescriptionVC.swift"
+                  timestampString = "522134679.24388"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LOOP.MeetingDescriptionVC.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; LOOP.MeetingDescriptionVC"
+                  moduleName = "LOOP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/MeetingDescriptionVC.swift"
+                  timestampString = "522134679.246499"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "1033">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LOOP.MeetingDescriptionVC.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;LOOP.MeetingDescriptionVC&gt;"
+                  moduleName = "LOOP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/MeetingDescriptionVC.swift"
+                  timestampString = "522134679.248863"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "929">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LOOP/MeetingDescriptionCell.swift"
+            timestampString = "521704352.040614"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "updateUI(user:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LOOP/AddProjectVC.swift"
+            timestampString = "521983445.223146"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "createProjectBtnPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LOOP/AddProjectVC.swift"
+            timestampString = "521983445.223146"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "createProjectBtnPressed(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LOOP.AddProjectVC.createProjectBtnPressed (Any) -&gt; ()"
+                  moduleName = "LOOP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/AddProjectVC.swift"
+                  timestampString = "522134679.261366"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "2588">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LOOP.AddProjectVC.(createProjectBtnPressed (Any) -&gt; ()).(closure #1)"
+                  moduleName = "LOOP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/AddProjectVC.swift"
+                  timestampString = "522134679.263879"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LOOP/EditProfileVC.swift"
+            timestampString = "522134678.02505"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "saveBtnPressed(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LOOP.EditProfileVC.saveBtnPressed (Any) -&gt; ()"
+                  moduleName = "LOOP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/EditProfileVC.swift"
+                  timestampString = "521979063.295259"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "2840">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LOOP.EditProfileVC.(saveBtnPressed (Any) -&gt; ()).(closure #1)"
+                  moduleName = "LOOP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AmanChawla/Desktop/Softkiwi/LOOP/LOOP/EditProfileVC.swift"
+                  timestampString = "521979063.297392"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "96"
+                  endingLineNumber = "96"
+                  offsetFromSymbolStart = "26">
                </Location>
             </Locations>
          </BreakpointContent>

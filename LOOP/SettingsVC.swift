@@ -15,16 +15,24 @@ class SettingsVC: UIViewController {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		
 		userImage.layer.cornerRadius = userImage.frame.size.width / 2
 		userImage.clipsToBounds = true
-		
-		userNameLbl.text = firstname
     }
+	
+	override func viewDidAppear(_ animated: Bool) {
+		userNameLbl.text = firstname
+	}
 	
 	@IBAction func editBtnPressed(_ sender: Any) {
 		
 		performSegue(withIdentifier: "EditProfileVC", sender: self)
 	}
-
+	
+	@IBAction func logOutBtnPressed(_ sender: Any) {
+		if let bundle = Bundle.main.bundleIdentifier {
+			UserDefaults.standard.removePersistentDomain(forName: bundle)
+		}
+		UserDefaults.standard.synchronize()
+		performSegue(withIdentifier: "TabBarVC", sender: self)
+	}
 }

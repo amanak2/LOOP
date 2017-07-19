@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import Alamofire
 
-class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PassSelectedMembers, PassMyContacts {
+class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PassSelectedMembers, PassMyContacts, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
 	var selectedMembers = [String: String]()
 	var smembers = [String]()
@@ -19,15 +19,24 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 	var myContactsModel: MyContactsModel!
 	var members = [MyContactsModel]()
 	
+	var imagePicker = UIImagePickerController()
+	var strBase64: String!
+	var format: String!
+	var image: UIImage!
+	var gotImage = false
+	
+	@IBOutlet weak var projectDescriptionTextField: UITextField!
 	@IBOutlet weak var addParticipantsBtn: UIButton!
 	@IBOutlet weak var participantsCountLbl: UILabel!
 	@IBOutlet weak var projectImg: UIImageView!
 	@IBOutlet weak var projectNameTextField: UITextField!
 	@IBOutlet weak var collectionView: UICollectionView!
-	@IBOutlet weak var projectDescriptionTextView: UITextView!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		projectImg.layer.cornerRadius = projectImg.frame.size.width / 2
+		projectImg.clipsToBounds = true
 		
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddProjectVC.dismissKeyboard))
 		tap.cancelsTouchesInView = false
@@ -35,6 +44,7 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 		
 		collectionView.delegate = self
 		collectionView.dataSource = self
+		imagePicker.delegate = self
     }
 	
 	func dismissKeyboard() {
@@ -43,17 +53,17 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(true)
-		updatePage()
 		collectionView.reloadData()
-	}
-	
-	func updatePage() {
 		
-		if selectedMembers.isEmpty == false {
+		if members.isEmpty == true {
+			addParticipantsBtn.isHidden = false
+		} else {
 			addParticipantsBtn.isHidden = true
 		}
 		
-		participantsCountLbl.text = "(\(selectedMembers.count))"
+		participantsCountLbl.text = "\(members.count)"
+		
+		getString()
 	}
 	
 	func getSmembers() {
@@ -107,19 +117,19 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 	}
 	
 	@IBAction func createProjectBtnPressed(_ sender: Any) {
+		getString()
 		let parameters: Parameters = [
-			"Project" : projectNameTextField.text!,
-			"adminemail" : "\(firstname)",
-			"type" : "group",
-			"users" : "[\(smembers.joined(separator: ","))]",
-			"adminemail" : "\(myEmail)",
-			"description": projectDescriptionTextView.text!,
-			"ext" : "",
-			"g_profile" : ""
-		]
-		print(parameters)
-		
-		Alamofire.request("\(baseURL)user_group.php", method: .post, parameters: parameters).responseJSON { response in
+			"type":"group",
+			"project":projectNameTextField.text!,
+			"description":projectDescriptionTextField.text!,
+			"ext": format,
+			"g_profile": strBase64,
+			"users": "[\(smembers.joined(separator: ","))]",
+			"adminemail": myEmail
+			]
+	
+		Alamofire.request("\(baseURL)user_group.php", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+			self.dismiss(animated: true, completion: nil)
 //			if let dict = response.result.value as? Dictionary<String, AnyObject> {
 //				let topic = dict["project"] as? String
 //				let g_id = dict["g_id"] as? String
@@ -166,7 +176,38 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 	}
 	
 	@IBAction func uploadImagePressed(_ sender: Any) {
-		//Add Picture for project
+		//add image
 		
+		imagePicker.allowsEditing = false
+		imagePicker.sourceType = .photoLibrary
+		
+		present(imagePicker, animated: true, completion: nil)
+	}
+	
+	func getString() {
+		if gotImage == true {
+			let imageData: NSData = UIImagePNGRepresentation(image)! as NSData
+			let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
+			self.strBase64 = strBase64
+			self.format = "png"
+		} else {
+			self.strBase64 = " "
+			self.format = " "
+		}
+	}
+	
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+		if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+			projectImg.contentMode = .scaleAspectFit
+			projectImg.image = pickedImage
+			gotImage = true
+			self.image = pickedImage
+		}
+		
+		dismiss(animated: true, completion: nil)
+	}
+	
+	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+		dismiss(animated: true, completion: nil)
 	}
 }

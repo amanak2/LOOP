@@ -12,10 +12,9 @@ let baseURL = "http://35.154.30.238/smokeApi/code/"
 let myEmail = UserDefaults.standard.string(forKey: "email")!
 let firstname = UserDefaults.standard.string(forKey: "firstname")!
 let lastname = UserDefaults.standard.string(forKey: "lastname")!
-let mobile = UserDefaults.standard.string(forKey: "modile")!
+let mobile = UserDefaults.standard.string(forKey: "mobile")!
 let office = UserDefaults.standard.string(forKey: "office")!
 let designation = UserDefaults.standard.string(forKey: "designation")!
-let profile = UserDefaults.standard.string(forKey: "profile")!
 let myName = "\(firstname) \(lastname)"
 
 typealias downloadComplete = () -> ()

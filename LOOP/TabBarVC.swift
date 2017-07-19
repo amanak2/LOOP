@@ -12,11 +12,14 @@ class TabBarVC: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		ifLoggedIn()
 		//dummyData()
 		
 		tabBar.barTintColor = UIColor.black
     }
+	
+	override func viewDidAppear(_ animated: Bool) {
+		ifLoggedIn()
+	}
 
 	
 	func ifLoggedIn() {

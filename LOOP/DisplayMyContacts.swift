@@ -9,12 +9,15 @@
 import UIKit
 import Alamofire
 
-class DisplayMyContacts: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class DisplayMyContacts: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate  {
 
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var searchBar: UISearchBar!
 	
 	var myContactsModel: MyContactsModel!
 	var myContacts = [MyContactsModel]()
+	var filteredMyContacts = [MyContactsModel]()
+	var inSearchMode = false
 	
 	var email: String!
 	
@@ -22,10 +25,44 @@ class DisplayMyContacts: UIViewController, UITableViewDelegate, UITableViewDataS
         super.viewDidLoad()
 		tableView.delegate = self
 		tableView.dataSource = self
+		searchBar.delegate = self
+		searchBar.returnKeyType = UIReturnKeyType.done
 		
 		downloadMyContactsData()
 		emptyContacts()
+		
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DisplayMyContacts.dismissKeyboard))
+		tap.cancelsTouchesInView = false
+		view.addGestureRecognizer(tap)
     }
+	
+	func dismissKeyboard() {
+		view.endEditing(true)
+	}
+	
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+		
+		view.endEditing(true)
+	}
+	
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+		
+		if searchBar.text == nil || searchBar.text == "" {
+			
+			inSearchMode = false
+			tableView.reloadData()
+			view.endEditing(true)
+		} else {
+			
+			inSearchMode = true
+			
+			let lower = searchBar.text?.lowercased()
+			//let upper = searchBar.text?.uppercased()
+			
+			filteredMyContacts = myContacts.filter({$0.user.range(of: lower!) != nil})
+			tableView.reloadData()
+		}
+	}
 	
 	func emptyContacts() {
 		if myContacts.isEmpty == true {
@@ -62,14 +99,22 @@ class DisplayMyContacts: UIViewController, UITableViewDelegate, UITableViewDataS
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if inSearchMode {
+			return filteredMyContacts.count
+		}
 		return myContacts.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		if let cell = tableView.dequeueReusableCell(withIdentifier: "MyContactsCell", for: indexPath) as? MyContactsCell {
 			
-			let myContact = self.myContacts[indexPath.row]
-			cell.updateUI(myContact: myContact)
+			if inSearchMode {
+				let myContact = self.filteredMyContacts[indexPath.row]
+				cell.updateUI(myContact: myContact)
+			} else {
+				let myContact = self.myContacts[indexPath.row]
+				cell.updateUI(myContact: myContact)
+			}
 			
 			return cell
 		} else {

@@ -17,6 +17,10 @@ class ChatCell: UITableViewCell {
 	@IBOutlet weak var acceptBtn: UIButton!
 	
 	var cellDelegate: YourCellDelegate!
+	var projectType: String!
+	var projectTitle: String!
+	var projectGid: String!
+	var projectUsers = [NotificationUsers]()
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,9 +47,13 @@ class ChatCell: UITableViewCell {
 			timeStampLbl.text = update.timeStamp
 			titleLbl.text = update.project
 			messageLbl.text = update.description
+			projectTitle = update.project
+			projectType = update.type
+			projectUsers = update.users
+			projectGid = update.g_id
 		} else if update.type == "accept" {
-			timeStampLbl.isHidden = true
-			acceptBtn.isHidden = true
+			timeStampLbl.isHidden = false
+			acceptBtn.isHidden = false
 			titleLbl.text = update.from_email
 			messageLbl.text = update.message
 		}

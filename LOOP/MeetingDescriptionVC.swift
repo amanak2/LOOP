@@ -11,6 +11,7 @@ import Alamofire
 
 class MeetingDescriptionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+	@IBOutlet weak var deleteMeetingBtn: UIButton!
 	@IBOutlet weak var meetingType: UILabel!
 	@IBOutlet weak var participantsCountLbl: UILabel!
 	@IBOutlet weak var mediaCountLbl: UIButton!
@@ -24,6 +25,7 @@ class MeetingDescriptionVC: UIViewController, UICollectionViewDelegate, UICollec
 	var meetingTit: String!
 	var date: String!
 	var time: String!
+	var adminEmail: String!
 	var users = [NotificationUsers]()
 	
 	override func viewDidLoad() {
@@ -36,6 +38,15 @@ class MeetingDescriptionVC: UIViewController, UICollectionViewDelegate, UICollec
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(true)
 		
+		if adminEmail == myEmail {
+			meetingType.text = "Mandatory"
+			deleteMeetingBtn.isHidden = false
+		} else {
+			deleteMeetingBtn.isHidden = true
+			meetingType.text = "Optional"
+		}
+		
+		participantsCountLbl.text = "\(users.count)"
 		meetingTitleLbl.text = meetingTit
 		dateLbl.text = date
 		timeLbl.text = time

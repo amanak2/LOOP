@@ -9,20 +9,81 @@
 import UIKit
 import Alamofire
 
-class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YourCellDelegate {
+class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YourCellDelegate, UISearchBarDelegate {
 	
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var searchBar: UISearchBar!
 	
 	var notificationModel: NotificationModel!
 	var notifications = [NotificationModel]()
+	var filteredNotification = [NotificationModel]()
+	var searchBarShowing = true
+	var inSearchMode = false
+	
+	@IBOutlet weak var searchBarWidth: NSLayoutConstraint!
+	
+	var projectType: String!
+	var projectTitle: String!
+	var projectGid: String!
+	var projectUsers = [NotificationUsers]()
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.delegate = self
 		tableView.dataSource = self
+		searchBar.delegate = self
+		searchBar.returnKeyType = UIReturnKeyType.done
 		
-		downloadNotificationData()
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChatVC.dismissKeyboard))
+		tap.cancelsTouchesInView = false
+		view.addGestureRecognizer(tap)
+		
+		if notifications.isEmpty {
+			tableView.isHidden = true
+		} else {
+			tableView.isHidden = false
+		}
     }
+	
+	override func viewDidAppear(_ animated: Bool) {
+		if notifications.isEmpty {
+			tableView.isHidden = true
+		} else {
+			tableView.isHidden = false
+		}
+		
+		self.notifications.removeAll()
+		self.downloadNotificationData()
+		self.tableView.reloadData()
+	}
+	
+	func dismissKeyboard() {
+		view.endEditing(true)
+	}
+	
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+		
+		view.endEditing(true)
+	}
+	
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+		
+		if searchBar.text == nil || searchBar.text == "" {
+			
+			inSearchMode = false
+			tableView.reloadData()
+			view.endEditing(true)
+		} else {
+			
+			inSearchMode = true
+			
+			let lower = searchBar.text?.lowercased()
+			//let upper = searchBar.text?.uppercased()
+			
+			filteredNotification = notifications.filter({$0.project.range(of: lower!) != nil})
+			tableView.reloadData()
+		}
+	}
 	
 	func downloadNotificationData() {
 		if UserDefaults.standard.bool(forKey: "ifLoggedIn") == true {
@@ -46,18 +107,39 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Your
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if inSearchMode {
+			return filteredNotification.count
+		}
+		
 		return notifications.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		if let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell", for: indexPath) as? ChatCell {
 			
-			let data = self.notifications[indexPath.row]
-			cell.updateUI(update: data)
+			if inSearchMode {
+				let data = self.filteredNotification[indexPath.row]
+				cell.updateUI(update: data)
+			} else {
+				let data = self.notifications[indexPath.row]
+				cell.updateUI(update: data)
+			}
 			
 			return cell
 		} else {
 			return ChatCell()
+		}
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		if let cell = tableView.cellForRow(at: indexPath) as? ChatCell {
+			if cell.isSelected && cell.projectType == "OpenProject" {
+				projectTitle = cell.projectTitle
+				projectType = cell.projectType
+				projectUsers = cell.projectUsers
+				projectGid = cell.projectGid
+				performSegue(withIdentifier: "ChatViewVC", sender: self)
+			}
 		}
 	}
 	
@@ -82,5 +164,18 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Your
 		}
 		
 	}
+	
+	@IBAction func searchBtnPressed(_ sender: Any) {
+		if searchBarShowing {
+			searchBarWidth.constant = 310
+			UISearchBar.animate(withDuration: 0.3, animations: {self.view.layoutIfNeeded()})
+		} else {
+			searchBarWidth.constant = -310
+			UISearchBar.animate(withDuration: 0.3, animations: {self.view.layoutIfNeeded()})
+		}
+		
+		searchBarShowing = !searchBarShowing
+	}
+	
 }
 

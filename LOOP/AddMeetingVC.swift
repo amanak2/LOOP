@@ -178,8 +178,6 @@ class AddMeetingVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
 			"adminemail":"\(myEmail)"
 		]
 		
-		print(parameters)
-		
 		Alamofire.request("\(baseURL)meeting_shedule.php",method: .post, parameters: parameters,encoding: JSONEncoding.default).responseJSON { response in
 			
 //			if let dict = response.result.value as? Dictionary<String, AnyObject> {

@@ -42,6 +42,8 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSContactsUsageDescription</key>
-	<string>Please allow</string>
+	<string>Please Allow</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Please Allow</string>
 </dict>
 </plist>

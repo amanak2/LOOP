@@ -10,17 +10,52 @@ import UIKit
 import Contacts
 import Alamofire
 
-class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,YourCellDelegate {
+class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,YourCellDelegate, UISearchBarDelegate {
 
+	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var tableView: UITableView!
 	var email: String!
+	var filteredContacts = [CNContact]()
+	var inSearchMode = false
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.delegate = self
 		tableView.dataSource = self
+		searchBar.delegate = self
+		searchBar.returnKeyType = UIReturnKeyType.done
 		
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DisplayContactsVC.dismissKeyboard))
+		tap.cancelsTouchesInView = false
+		view.addGestureRecognizer(tap)
     }
+	
+	func dismissKeyboard() {
+		view.endEditing(true)
+	}
+	
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+		
+		view.endEditing(true)
+	}
+	
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+		
+		if searchBar.text == nil || searchBar.text == "" {
+			
+			inSearchMode = false
+			tableView.reloadData()
+			view.endEditing(true)
+		} else {
+			
+			inSearchMode = true
+			
+			let text = searchBar.text
+			
+			filteredContacts = contacts.filter({$0.givenName.range(of: text!) != nil})
+			tableView.reloadData()
+		}
+	}
 	
 	lazy var contacts: [CNContact] = {
 		let contactStore = CNContactStore()
@@ -60,6 +95,10 @@ class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataS
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if inSearchMode {
+			return filteredContacts.count
+		}
+		
 		return contacts.count
 	}
 	
@@ -67,11 +106,19 @@ class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataS
 		
 		let cell = tableView.dequeueReusableCell(withIdentifier: "PersonCell", for: indexPath) as? PersonCell
 	
-		let contacts = self.contacts[indexPath.row]
-		cell?.updateUI(contact: contacts)
-		
-		cell?.cellDelegate = self
-		cell?.tag = indexPath.row
+		if inSearchMode {
+			let contacts = self.filteredContacts[indexPath.row]
+			cell?.updateUI(contact: contacts)
+			
+			cell?.cellDelegate = self
+			cell?.tag = indexPath.row
+		} else {
+			let contacts = self.contacts[indexPath.row]
+			cell?.updateUI(contact: contacts)
+			
+			cell?.cellDelegate = self
+			cell?.tag = indexPath.row
+		}
 		
 		return cell!
 	}

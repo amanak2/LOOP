@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		920F17DE1F1895CB000027D3 /* ChatViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920F17DD1F1895CB000027D3 /* ChatViewVC.swift */; };
 		92102D351F14B01400127EE4 /* MparticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92102D341F14B01400127EE4 /* MparticipantsCell.swift */; };
 		92102D371F14BD5F00127EE4 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92102D361F14BD5F00127EE4 /* EditProfileVC.swift */; };
 		92102D391F14BDA100127EE4 /* MeetingDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92102D381F14BDA100127EE4 /* MeetingDescriptionVC.swift */; };
@@ -61,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		24F467655A33F5ABA6E850E1 /* Pods-LOOP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOOP.release.xcconfig"; path = "Pods/Target Support Files/Pods-LOOP/Pods-LOOP.release.xcconfig"; sourceTree = "<group>"; };
+		920F17DD1F1895CB000027D3 /* ChatViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewVC.swift; sourceTree = "<group>"; };
 		92102D341F14B01400127EE4 /* MparticipantsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MparticipantsCell.swift; sourceTree = "<group>"; };
 		92102D361F14BD5F00127EE4 /* EditProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		92102D381F14BDA100127EE4 /* MeetingDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingDescriptionVC.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				92C2B9811F0513DD00C7C21E /* enterOtpVC.swift */,
 				92C7E69A1EE0349000D7170A /* forgetpassVC.swift */,
 				92C7E6A61EE146F300D7170A /* ChatVC.swift */,
+				920F17DD1F1895CB000027D3 /* ChatViewVC.swift */,
 				92C7E69E1EE13ACF00D7170A /* ProjectsVC.swift */,
 				927A69981F0BAB9F0005E204 /* ProjectDesciptionVC.swift */,
 				92C7E6A21EE13B3500D7170A /* MeetingsVC.swift */,
@@ -406,6 +409,7 @@
 				92D5B7111EE5236B00E4BD5D /* DisplayContactsVC.swift in Sources */,
 				92C7E6A71EE146F300D7170A /* ChatVC.swift in Sources */,
 				92D5B7301EEA7C3100E4BD5D /* AddMeetingVC.swift in Sources */,
+				920F17DE1F1895CB000027D3 /* ChatViewVC.swift in Sources */,
 				92F51E141EEFD3C700F9DAEF /* ViewTeamMembersVC.swift in Sources */,
 				92C7E6A31EE13B3500D7170A /* MeetingsVC.swift in Sources */,
 				92102D371F14BD5F00127EE4 /* EditProfileVC.swift in Sources */,

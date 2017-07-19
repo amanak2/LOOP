@@ -14,23 +14,86 @@ protocol MyCellDelegate: class {
 	func didJoinPressButton(_ tag: Int)
 }
 
-class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MyCellDelegate{
+class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MyCellDelegate, UISearchBarDelegate{
 
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var searchBar: UISearchBar!
+	@IBOutlet weak var searchBarWidth: NSLayoutConstraint!
 	
 	var projectName: String!
 	var gId: String!
+	var searchBarShowing = true
+	var inSearchMode = false
 	
 	var notificationModel: NotificationModel!
 	var notifications = [NotificationModel]()
+	var filteredNotification = [NotificationModel]()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.delegate = self
 		tableView.dataSource = self
+		searchBar.delegate = self
+		searchBar.returnKeyType = UIReturnKeyType.done
 		
-		downloadNotificationData()
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DisplayMyContacts.dismissKeyboard))
+		tap.cancelsTouchesInView = false
+		view.addGestureRecognizer(tap)
     }
+	
+	func dismissKeyboard() {
+		view.endEditing(true)
+	}
+	
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+		
+		view.endEditing(true)
+	}
+	
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+		
+		if searchBar.text == nil || searchBar.text == "" {
+			
+			inSearchMode = false
+			tableView.reloadData()
+			view.endEditing(true)
+		} else {
+			
+			inSearchMode = true
+			
+			let lower = searchBar.text?.lowercased()
+			//let upper = searchBar.text?.uppercased()
+			
+			filteredNotification = notifications.filter({$0.project.range(of: lower!) != nil})
+			tableView.reloadData()
+		}
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		self.notifications.removeAll()
+		self.downloadNotificationData()
+		self.tableView.reloadData()
+		
+		if notifications.isEmpty {
+			tableView.isHidden = true
+		} else {
+			tableView.isHidden = false
+		}
+	}
+	
+	@IBAction func searchBtnPressed(_ sender: Any) {
+		if searchBarShowing {
+			searchBarWidth.constant = 310
+			UISearchBar.animate(withDuration: 0.3, animations: {self.view.layoutIfNeeded()})
+		} else {
+			searchBarWidth.constant = -310
+			UISearchBar.animate(withDuration: 0.3, animations: {self.view.layoutIfNeeded()})
+		}
+		
+		searchBarShowing = !searchBarShowing
+		
+	}
+	
 	
 	//Download Notifications
 	func downloadNotificationData() {
@@ -71,8 +134,13 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		
 		if let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as? ProjectCell {
 			
-			let notifications = self.notifications[indexPath.row]
-			cell.updateUI(notifications: notifications)
+			if inSearchMode {
+				let notifications = self.filteredNotification[indexPath.row]
+				cell.updateUI(notifications: notifications)
+			} else {
+				let notifications = self.notifications[indexPath.row]
+				cell.updateUI(notifications: notifications)
+			}
 			
 			cell.cellDelegate = self
 			cell.tag = indexPath.row
@@ -84,6 +152,10 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if inSearchMode {
+			return filteredNotification.count
+		}
+		
 		return notifications.count
 	}
 	
@@ -148,4 +220,6 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		let appDelegate = UIApplication.shared.delegate as! AppDelegate
 		return appDelegate.persistentContainer.viewContext
 	}
+	
+	
 }

@@ -52,7 +52,6 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(true)
 		collectionView.reloadData()
 		
 		if members.isEmpty == true {
@@ -70,7 +69,7 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 		if selectedMembers.isEmpty == false {
 			for (key, value) in selectedMembers {
 				//selected = ["useremail": key, "catagory": value]
-				selected = String(format: "{\"category\":\"%@\",\"email\":\"%@\"}", arguments: [key,value])
+				selected = String(format: "{\"email\":\"%@\",\"category\":\"%@\"}", arguments: [key,value])
 				smembers.append(selected)
 			}
 		}
@@ -118,18 +117,21 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 	
 	@IBAction func createProjectBtnPressed(_ sender: Any) {
 		getString()
+		
 		let parameters: Parameters = [
 			"type":"group",
 			"project":projectNameTextField.text!,
 			"description":projectDescriptionTextField.text!,
-			"ext": format,
-			"g_profile": strBase64,
+			"ext": "",
+			"g_profile": "",
 			"users": "[\(smembers.joined(separator: ","))]",
 			"adminemail": myEmail
 			]
+		
+		print(parameters)
 	
 		Alamofire.request("\(baseURL)user_group.php", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
-			self.dismiss(animated: true, completion: nil)
+
 //			if let dict = response.result.value as? Dictionary<String, AnyObject> {
 //				let topic = dict["project"] as? String
 //				let g_id = dict["g_id"] as? String
@@ -137,6 +139,8 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 //				
 //				self.saveData(topic: topic!, g_id: g_id!, desription: description!)
 //			}
+			
+			self.dismiss(animated: true, completion: nil)
 			
 		}
 	}

@@ -13,10 +13,13 @@
 		92102D391F14BDA100127EE4 /* MeetingDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92102D381F14BDA100127EE4 /* MeetingDescriptionVC.swift */; };
 		92102D3B1F14DDAE00127EE4 /* MyContactsInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92102D3A1F14DDAE00127EE4 /* MyContactsInfoVC.swift */; };
 		92102D3D1F14F16800127EE4 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92102D3C1F14F16800127EE4 /* ChatCell.swift */; };
+		926191091F25BD26009B5F48 /* VideoCallVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926191081F25BD26009B5F48 /* VideoCallVC.swift */; };
 		927A69991F0BAB9F0005E204 /* ProjectDesciptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927A69981F0BAB9F0005E204 /* ProjectDesciptionVC.swift */; };
 		927A699B1F0CBE8C0005E204 /* MyContactsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927A699A1F0CBE8C0005E204 /* MyContactsModel.swift */; };
 		927A699D1F0CF32D0005E204 /* AddProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927A699C1F0CF32D0005E204 /* AddProjectVC.swift */; };
 		927A69A11F0D0F290005E204 /* ParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927A69A01F0D0F290005E204 /* ParticipantsCell.swift */; };
+		929A32E11F220BF300F1CFB5 /* Bridging_Header.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A32E01F220BF300F1CFB5 /* Bridging_Header.m */; };
+		929A32E31F220E0F00F1CFB5 /* AudioCallVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32E21F220E0F00F1CFB5 /* AudioCallVC.swift */; };
 		92AAFE421F0E1B880077F142 /* AddParticipantsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AAFE411F0E1B880077F142 /* AddParticipantsVC.swift */; };
 		92AAFE441F0E1FF10077F142 /* AddParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AAFE431F0E1FF10077F142 /* AddParticipantsCell.swift */; };
 		92AAFE461F0E202E0077F142 /* AddedParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AAFE451F0E202E0077F142 /* AddedParticipantsCell.swift */; };
@@ -68,10 +71,14 @@
 		92102D381F14BDA100127EE4 /* MeetingDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingDescriptionVC.swift; sourceTree = "<group>"; };
 		92102D3A1F14DDAE00127EE4 /* MyContactsInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyContactsInfoVC.swift; sourceTree = "<group>"; };
 		92102D3C1F14F16800127EE4 /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		926191081F25BD26009B5F48 /* VideoCallVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCallVC.swift; sourceTree = "<group>"; };
 		927A69981F0BAB9F0005E204 /* ProjectDesciptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDesciptionVC.swift; sourceTree = "<group>"; };
 		927A699A1F0CBE8C0005E204 /* MyContactsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyContactsModel.swift; sourceTree = "<group>"; };
 		927A699C1F0CF32D0005E204 /* AddProjectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProjectVC.swift; sourceTree = "<group>"; };
 		927A69A01F0D0F290005E204 /* ParticipantsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantsCell.swift; sourceTree = "<group>"; };
+		929A32DF1F220BF300F1CFB5 /* LOOP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LOOP-Bridging-Header.h"; sourceTree = "<group>"; };
+		929A32E01F220BF300F1CFB5 /* Bridging_Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bridging_Header.m; sourceTree = "<group>"; };
+		929A32E21F220E0F00F1CFB5 /* AudioCallVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioCallVC.swift; sourceTree = "<group>"; };
 		92AAFE411F0E1B880077F142 /* AddParticipantsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddParticipantsVC.swift; sourceTree = "<group>"; };
 		92AAFE431F0E1FF10077F142 /* AddParticipantsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddParticipantsCell.swift; sourceTree = "<group>"; };
 		92AAFE451F0E202E0077F142 /* AddedParticipantsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddedParticipantsCell.swift; sourceTree = "<group>"; };
@@ -169,6 +176,8 @@
 				92C7E6811EDEA4C200D7170A /* LaunchScreen.storyboard */,
 				92C7E6841EDEA4C200D7170A /* Info.plist */,
 				92C7E67C1EDEA4C200D7170A /* LOOP.xcdatamodeld */,
+				929A32E01F220BF300F1CFB5 /* Bridging_Header.m */,
+				929A32DF1F220BF300F1CFB5 /* LOOP-Bridging-Header.h */,
 			);
 			path = LOOP;
 			sourceTree = "<group>";
@@ -183,6 +192,8 @@
 				92C7E69A1EE0349000D7170A /* forgetpassVC.swift */,
 				92C7E6A61EE146F300D7170A /* ChatVC.swift */,
 				920F17DD1F1895CB000027D3 /* ChatViewVC.swift */,
+				929A32E21F220E0F00F1CFB5 /* AudioCallVC.swift */,
+				926191081F25BD26009B5F48 /* VideoCallVC.swift */,
 				92C7E69E1EE13ACF00D7170A /* ProjectsVC.swift */,
 				927A69981F0BAB9F0005E204 /* ProjectDesciptionVC.swift */,
 				92C7E6A21EE13B3500D7170A /* MeetingsVC.swift */,
@@ -291,6 +302,7 @@
 					92C7E6711EDEA4C200D7170A = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 3G95JV9S9H;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -383,6 +395,7 @@
 				92D5B70F1EE4278700E4BD5D /* TabBarVC.swift in Sources */,
 				92C7E6A51EE13B5700D7170A /* SettingsVC.swift in Sources */,
 				92C2B9821F0513DD00C7C21E /* enterOtpVC.swift in Sources */,
+				926191091F25BD26009B5F48 /* VideoCallVC.swift in Sources */,
 				92C7E67E1EDEA4C200D7170A /* LOOP.xcdatamodeld in Sources */,
 				92D5B72C1EE7D0B800E4BD5D /* AddMembersCell.swift in Sources */,
 				92C7E69B1EE0349000D7170A /* forgetpassVC.swift in Sources */,
@@ -402,6 +415,7 @@
 				92C7E68B1EDEB03500D7170A /* signinVC.swift in Sources */,
 				92C7E6991EDFF98B00D7170A /* Constent.swift in Sources */,
 				92D5B7281EE6D0C300E4BD5D /* CreateTeamVC.swift in Sources */,
+				929A32E31F220E0F00F1CFB5 /* AudioCallVC.swift in Sources */,
 				92D5B7341EEAA75C00E4BD5D /* ChooseMembersFromMyContactsVC.swift in Sources */,
 				92AAFE441F0E1FF10077F142 /* AddParticipantsCell.swift in Sources */,
 				92E2E4731F15FDF2004E70C3 /* NotificationUsers.swift in Sources */,
@@ -421,6 +435,7 @@
 				92F51E161EF000C700F9DAEF /* ProjectCell.swift in Sources */,
 				92102D351F14B01400127EE4 /* MparticipantsCell.swift in Sources */,
 				92D5B71D1EE5743C00E4BD5D /* DisplayMyContacts.swift in Sources */,
+				929A32E11F220BF300F1CFB5 /* Bridging_Header.m in Sources */,
 				92C7E6761EDEA4C200D7170A /* AppDelegate.swift in Sources */,
 				92C7E6A11EE13AFE00D7170A /* ContactsVC.swift in Sources */,
 				92D5B7321EEA7EEC00E4BD5D /* MeetingCell.swift in Sources */,
@@ -551,11 +566,15 @@
 			baseConfigurationReference = C6C283C86675D607308C88C3 /* Pods-LOOP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 3G95JV9S9H;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LOOP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SoftkiwiTech.LOOP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LOOP/LOOP-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -565,11 +584,14 @@
 			baseConfigurationReference = 24F467655A33F5ABA6E850E1 /* Pods-LOOP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 3G95JV9S9H;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LOOP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SoftkiwiTech.LOOP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LOOP/LOOP-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

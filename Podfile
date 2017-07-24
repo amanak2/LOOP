@@ -8,5 +8,7 @@ target 'LOOP' do
   # Pods for LOOP
   pod 'Alamofire', '~> 4.4'
   pod 'SDWebImage', '~>3.8'
+  pod 'SKYLINK'
+  pod 'Firebase/Core'
 
 end

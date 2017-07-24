@@ -45,5 +45,9 @@
 	<string>Please Allow</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Please Allow</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Please Allow</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Please Allow</string>
 </dict>
 </plist>

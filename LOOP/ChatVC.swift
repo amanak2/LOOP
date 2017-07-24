@@ -37,21 +37,9 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Your
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChatVC.dismissKeyboard))
 		tap.cancelsTouchesInView = false
 		view.addGestureRecognizer(tap)
-		
-		if notifications.isEmpty {
-			tableView.isHidden = true
-		} else {
-			tableView.isHidden = false
-		}
     }
 	
 	override func viewDidAppear(_ animated: Bool) {
-		if notifications.isEmpty {
-			tableView.isHidden = true
-		} else {
-			tableView.isHidden = false
-		}
-		
 		self.notifications.removeAll()
 		self.downloadNotificationData()
 		self.tableView.reloadData()
@@ -140,6 +128,13 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Your
 				projectGid = cell.projectGid
 				performSegue(withIdentifier: "ChatViewVC", sender: self)
 			}
+		}
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "ChatViewVC" {
+			let destination = segue.destination as! ChatViewVC
+			destination.projectTitle = self.projectTitle
 		}
 	}
 	

@@ -71,7 +71,7 @@ class AddMeetingVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
 		if selectedMembers.isEmpty == false {
 			for (key, value) in selectedMembers {
 				//selected = ["email":key, "category":value]
-				selected = String(format: "{\"category\":\"%@\",\"email\":\"%@\"}", arguments: [key,value])
+				selected = String(format: "{\"email\":\"%@\",\"category\":\"%@\"}", arguments: [key,value])
 				smembers.append(selected)
 			}
 		}

@@ -41,6 +41,12 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		view.addGestureRecognizer(tap)
     }
 	
+	override func viewDidAppear(_ animated: Bool) {
+		self.notifications.removeAll()
+		self.downloadNotificationData()
+		self.tableView.reloadData()
+	}
+	
 	func dismissKeyboard() {
 		view.endEditing(true)
 	}
@@ -66,18 +72,6 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 			
 			filteredNotification = notifications.filter({$0.project.range(of: lower!) != nil})
 			tableView.reloadData()
-		}
-	}
-	
-	override func viewDidAppear(_ animated: Bool) {
-		self.notifications.removeAll()
-		self.downloadNotificationData()
-		self.tableView.reloadData()
-		
-		if notifications.isEmpty {
-			tableView.isHidden = true
-		} else {
-			tableView.isHidden = false
 		}
 	}
 	

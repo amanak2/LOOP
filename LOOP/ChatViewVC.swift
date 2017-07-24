@@ -15,12 +15,26 @@ class ChatViewVC: UIViewController {
 	@IBOutlet weak var projectUsersLbl: UILabel!
 	@IBOutlet weak var projectTitleLbl: UILabel!
 	
+	var projectTitle: String!
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		
 		NotificationCenter.default.addObserver(self, selector: #selector(ChatViewVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(ChatViewVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 		
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChatVC.dismissKeyboard))
+		tap.cancelsTouchesInView = false
+		view.addGestureRecognizer(tap)
     }
+	
+	func dismissKeyboard() {
+		view.endEditing(true)
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		projectTitleLbl.text = self.projectTitle
+	}
 	
 	func keyboardWillShow(notification: NSNotification) {
 		if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -48,11 +62,11 @@ class ChatViewVC: UIViewController {
 	}
 	
 	@IBAction func audioCallBtnPressed(_ sender: Any) {
-		//Audio Call in group
+		performSegue(withIdentifier: "AudioCallVC", sender: self)
 	}
 	
 	@IBAction func videoCallBtnPressed(_ sender: Any) {
-		//Video Call in group
+		performSegue(withIdentifier: "VideoCallVC", sender: self)
 	}
 	
 	@IBAction func sendLocationBtnPressed(_ sender: Any) {
@@ -61,6 +75,18 @@ class ChatViewVC: UIViewController {
 	
 	@IBAction func textFieldTouched(_ sender: Any) {
 		//start writting message
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "AudioCallVC" {
+			let destination = segue.destination as! AudioCallVC
+			destination.projectTitle = self.projectTitle
+		}
+		
+		if segue.identifier == "VideoCallVC" {
+			let destination = segue.destination as! VideoCallVC
+			destination.ProjectName = self.projectTitle
+		}
 	}
 	
 }

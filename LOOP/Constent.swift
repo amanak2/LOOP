@@ -17,6 +17,9 @@ let office = UserDefaults.standard.string(forKey: "office")!
 let designation = UserDefaults.standard.string(forKey: "designation")!
 let myName = "\(firstname) \(lastname)"
 
+let SkylinkAppKey: String = "31bcce92-26d8-4ac7-ae0c-327f90f2d221"
+let SkylinkSecret: String  = "ey6wbd6kpp7m0"
+
 typealias downloadComplete = () -> ()
 
 protocol PassSelectedMembers {

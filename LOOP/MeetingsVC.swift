@@ -43,11 +43,11 @@ class MeetingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 		self.downloadNotificationData()
 		self.tableView.reloadData()
 		
-		if notifications.isEmpty {
-			tableView.isHidden = true
-		} else {
-			tableView.isHidden = false
-		}
+//		if notifications.isEmpty {
+//			tableView.isHidden = true
+//		} else {
+//			tableView.isHidden = false
+//		}
 	}
 	
 	func dismissKeyboard() {

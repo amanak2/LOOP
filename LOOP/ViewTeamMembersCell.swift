@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Loads Data in TableView on ViewTeamMembersVC
 class ViewTeamMembersCell: UITableViewCell {
 
 	@IBOutlet weak var personImg: UIImageView!

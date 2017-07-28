@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK - Loads data in CollectionView on AddProjectsVC
 class ParticipantsCell: UICollectionViewCell {
     
 	@IBOutlet weak var userImage: UIImageView!

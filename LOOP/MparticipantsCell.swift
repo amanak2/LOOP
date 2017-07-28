@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 
+// MARK - Loads data in CollectionView on AddMeetingsVC
 class MparticipantsCell: UICollectionViewCell {
 	
 	@IBOutlet weak var personImg: UIImageView!

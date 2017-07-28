@@ -8,8 +8,10 @@
 
 import UIKit
 
+//MARK - Loads data in TableView on ProjectsVC
 class ProjectCell: UITableViewCell {
 
+	@IBOutlet weak var rejectBtn: UIButton!
 	@IBOutlet weak var joinBtn: UIButton!
 	@IBOutlet weak var adminNameLbl: UILabel!
 	@IBOutlet weak var msgLbl: UILabel!
@@ -34,12 +36,14 @@ class ProjectCell: UITableViewCell {
 		
 		if notifications.type == "group" {
 			joinBtn.isHidden = false
+			rejectBtn.isHidden = false
 			timeStampLbl.isHidden = true
 			adminNameLbl.text = notifications.adminEmail
 			msgLbl.text = notifications.message
 			type = notifications.type
 		} else if notifications.type == "OpenProject" {
 			joinBtn.isHidden = true
+			rejectBtn.isHidden = true
 			timeStampLbl.isHidden = false
 			adminNameLbl.text = notifications.project
 			msgLbl.text = notifications.description
@@ -53,5 +57,10 @@ class ProjectCell: UITableViewCell {
 	@IBAction func joinBtnPressed(_ sender: UIButton) {
 		cellDelegate?.didJoinPressButton(self.tag)
 	}
+	
+	@IBAction func rejectBtnPressed(_ sender: UIButton) {
+		cellDelegate?.didRejectPressButton(self.tag)
+	}
+	
 
 }

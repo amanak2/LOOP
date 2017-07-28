@@ -8,6 +8,7 @@
 
 import Foundation
 
+//MARK - Gets All Data from Notification API
 class NotificationModel {
 	
 	private var _g_id: String!
@@ -22,6 +23,7 @@ class NotificationModel {
 	private var _timeStamp: String!
 	private var _project: String!
 	private var _from_email: String!
+	private var _g_profile: String!
 	
 	var notificationUsers: NotificationUsers!
 	var users = [NotificationUsers]()
@@ -31,6 +33,13 @@ class NotificationModel {
 			_g_id = ""
 		}
 		return _g_id
+	}
+	
+	var g_profile: String {
+		if _g_profile == nil {
+			_g_profile = ""
+		}
+		return _g_profile
 	}
 	
 	var topic: String {
@@ -116,6 +125,10 @@ class NotificationModel {
 			self._g_id = id
 		}
 		
+		if let profile = getData["g_profile"] as? String {
+			self._g_profile = profile
+		}
+		
 		if let topic = getData["topic"] as? String {
 			self._topic = topic
 		}
@@ -166,7 +179,6 @@ class NotificationModel {
 				self.users.append(user)
 			}
 		}
-
 	}
 }
 

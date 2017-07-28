@@ -18,6 +18,7 @@ class forgetpassVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		//tap anywhere to disapear keyboard
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(forgetpassVC.dismissKeyboard))
 		tap.cancelsTouchesInView = false
 		view.addGestureRecognizer(tap)

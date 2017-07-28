@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 
+// MARK - Loads data in TableView on AddParticipantsVC
 class AddParticipantsCell: UITableViewCell {
 
 	@IBOutlet weak var catagoryLbl: UILabel!

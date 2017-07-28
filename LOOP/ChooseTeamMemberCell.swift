@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Loads Data in TableView on 
 class ChooseTeamMemberCell: UITableViewCell {
 
 	@IBOutlet weak var personImg: UIImageView!

@@ -28,13 +28,20 @@ class MyContactsInfoVC: UIViewController {
 		
     }
 	
+	// MARK - Util
+	
 	override func viewWillAppear(_ animated: Bool) {
 		downloadMyContactsData()
 		
 		userImg.layer.cornerRadius = userImg.frame.size.width / 2
 		userImg.clipsToBounds = true
 	}
+
+	@IBAction func backBtn(_ sender: Any) {
+		dismiss(animated: true, completion: nil)
+	}
 	
+	//Get data from API 
 	func downloadMyContactsData() {
 		Alamofire.request("\(baseURL)frnd_req.php?my_email=\(myEmail)", method: .get).responseJSON { response in
 			
@@ -53,10 +60,5 @@ class MyContactsInfoVC: UIViewController {
 			}
 		}
 	}
-
-	@IBAction func backBtn(_ sender: Any) {
-		dismiss(animated: true, completion: nil)
-	}
-	
 	
 }

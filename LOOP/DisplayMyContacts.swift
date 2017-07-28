@@ -29,16 +29,62 @@ class DisplayMyContacts: UIViewController, UITableViewDelegate, UITableViewDataS
 		searchBar.returnKeyType = UIReturnKeyType.done
 		
 		downloadMyContactsData()
-		emptyContacts()
 		
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DisplayMyContacts.dismissKeyboard))
 		tap.cancelsTouchesInView = false
 		view.addGestureRecognizer(tap)
     }
+
+	//MARK - Util
+	
+	override func viewDidAppear(_ animated: Bool) {
+		emptyContacts()
+	}
 	
 	func dismissKeyboard() {
 		view.endEditing(true)
 	}
+	
+	func emptyContacts() {
+		if myContacts.isEmpty == true {
+			let alert = UIAlertController(title: "No Friends", message: "Please invite friends from contacts", preferredStyle: .alert)
+			
+			let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in
+				self.dismiss(animated: true, completion: nil)
+			}
+			
+			alert.addAction(okBtn)
+			self.present(alert, animated: true, completion: nil)
+		}
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "MyContactsInfoVC" {
+			if let destination = segue.destination as? MyContactsInfoVC {
+				destination.email = self.email
+			}
+		}
+	}
+	
+	//Download myContacts from API 
+	func downloadMyContactsData() {
+		Alamofire.request("\(baseURL)frnd_req.php?my_email=\(myEmail)", method: .get).responseJSON { response in
+			
+			if let dict = response.result.value as? [[String:Any]] {
+				for obj in dict {
+					let myContact = MyContactsModel(getData: obj)
+					self.myContacts.append(myContact)
+				}
+			}
+			self.tableView.reloadData()
+		}
+	}
+	
+	@IBAction func backBtn(_ sender: Any) {
+		dismiss(animated: true, completion: nil)
+	}
+	
+	//MARK - SearchBar
 	
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		
@@ -64,35 +110,7 @@ class DisplayMyContacts: UIViewController, UITableViewDelegate, UITableViewDataS
 		}
 	}
 	
-	func emptyContacts() {
-		if myContacts.isEmpty == true {
-			let alert = UIAlertController(title: "No Friends", message: "Please invite friends from contacts", preferredStyle: .alert)
-			
-			let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in
-				self.dismiss(animated: true, completion: nil)
-			}
-			
-			alert.addAction(okBtn)
-			self.present(alert, animated: true, completion: nil)
-		}
-	}
-
-	@IBAction func backBtn(_ sender: Any) {
-		dismiss(animated: true, completion: nil)
-	}
-	
-	func downloadMyContactsData() {
-		Alamofire.request("\(baseURL)frnd_req.php?my_email=\(myEmail)", method: .get).responseJSON { response in
-			
-			if let dict = response.result.value as? [[String:Any]] {
-				for obj in dict {
-					let myContact = MyContactsModel(getData: obj)
-					self.myContacts.append(myContact)
-				}
-			}
-			self.tableView.reloadData()
-		}
-	}
+	//MARK - TableView
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
@@ -128,14 +146,6 @@ class DisplayMyContacts: UIViewController, UITableViewDelegate, UITableViewDataS
 		if cell.isSelected {
 			email = cell.personEmailLbl.text
 			performSegue(withIdentifier: "MyContactsInfoVC", sender: self)
-		}
-	}
-	
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == "MyContactsInfoVC" {
-			if let destination = segue.destination as? MyContactsInfoVC {
-				destination.email = self.email
-			}
 		}
 	}
 	

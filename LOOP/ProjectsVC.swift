@@ -12,6 +12,7 @@ import CoreData
 
 protocol MyCellDelegate: class {
 	func didJoinPressButton(_ tag: Int)
+	func didRejectPressButton(_ tag: Int)
 }
 
 class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MyCellDelegate, UISearchBarDelegate{
@@ -47,12 +48,21 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		self.tableView.reloadData()
 	}
 	
+	//MARK - Util 
 	func dismissKeyboard() {
 		view.endEditing(true)
 	}
 	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "ProjectDescriptionVC" {
+			if let destination = segue.destination as? ProjectDesciptionVC {
+				destination.gId = self.gId
+			}
+		}
+	}
+	
+	//MARK - SearchBar
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-		
 		view.endEditing(true)
 	}
 	
@@ -101,14 +111,6 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 					}
 				}
 				self.tableView.reloadData()
-			}
-		}
-	}
-	
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == "ProjectDescriptionVC" {
-			if let destination = segue.destination as? ProjectDesciptionVC {
-				destination.gId = self.gId
 			}
 		}
 	}
@@ -177,15 +179,56 @@ class ProjectsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 			if let dict = response.result.value as? Dictionary<String, AnyObject> {
 				
 				let status = dict["status"] as? String
+				let msg = dict["msg"] as? String
 				
 				if status == "200" {
 					self.notifications.removeAll()
 					self.downloadNotificationData()
+				} else {
+					let alert = UIAlertController(title: "Project", message: msg, preferredStyle: .alert)
+					
+					let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
+					
+					alert.addAction(okBtn)
+					self.present(alert, animated: true, completion: nil)
 				}
 			}
 
 		}
 	}
+	
+	//Reject Project Button
+	func didRejectPressButton(_ tag: Int) {
+		let notification = self.notifications[tag]
+		
+		let parameters: Parameters = [
+			"g_id" : notification.g_id,
+			"email" : "\(myEmail)",
+		]
+		
+		Alamofire.request("\(baseURL)reject_user_group", method: .post, parameters: parameters).responseJSON { response in
+			
+			if let dict = response.result.value as? Dictionary<String, AnyObject> {
+				
+				let status = dict["status"] as? String
+				let msg = dict["msg"] as? String
+				
+				if status == "200" {
+					self.notifications.removeAll()
+					self.downloadNotificationData()
+				} else {
+					let alert = UIAlertController(title: "Project", message: msg, preferredStyle: .alert)
+					
+					let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
+					
+					alert.addAction(okBtn)
+					self.present(alert, animated: true, completion: nil)
+				}
+			}
+			
+		}
+	}
+	
 	//CoreData Saving Functions
 	func saveData(topic: String, g_id: String) {
 		let context = self.getContext()

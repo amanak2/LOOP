@@ -38,6 +38,7 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 		projectImg.layer.cornerRadius = projectImg.frame.size.width / 2
 		projectImg.clipsToBounds = true
 		
+		//tap anywhere to disapear keyboard
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddProjectVC.dismissKeyboard))
 		tap.cancelsTouchesInView = false
 		view.addGestureRecognizer(tap)
@@ -47,12 +48,15 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 		imagePicker.delegate = self
     }
 	
+	//MARK - Util
+	
 	func dismissKeyboard() {
 		view.endEditing(true)
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		collectionView.reloadData()
+		participantsCountLbl.text = "\(members.count)"
 		
 		if members.isEmpty == true {
 			addParticipantsBtn.isHidden = false
@@ -60,11 +64,10 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 			addParticipantsBtn.isHidden = true
 		}
 		
-		participantsCountLbl.text = "\(members.count)"
-		
 		getString()
 	}
 	
+	//Convert Array to string array for API hitting 
 	func getSmembers() {
 		if selectedMembers.isEmpty == false {
 			for (key, value) in selectedMembers {
@@ -84,12 +87,31 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 		self.members = selects
 	}
 	
+	@IBAction func backBtnPressed(_ sender: Any) {
+		dismiss(animated: true, completion: nil)
+	}
+	
+	@IBAction func addParticipantsBtnPressed(_ sender: Any) {
+		performSegue(withIdentifier: "AddParticipantsVC", sender: self)
+	}
+	
+	@IBAction func uploadImagePressed(_ sender: Any) {
+		//add image
+		
+		imagePicker.allowsEditing = false
+		imagePicker.sourceType = .photoLibrary
+		
+		present(imagePicker, animated: true, completion: nil)
+	}
+	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let destination = segue.destination as? AddParticipantsVC {
 			destination.delegate = self
 			destination.del = self
 		}
 	}
+	
+	//MARK - Collection View
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return members.count
@@ -111,7 +133,31 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 		}
 	}
 	
-	@IBAction func backBtnPressed(_ sender: Any) {
+	//MARK - Get image from phone library and conver to strBase64
+	
+	func getString() {
+		if gotImage == true {
+			let imageData: NSData = UIImagePNGRepresentation(image)! as NSData
+			let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
+			self.strBase64 = strBase64
+			self.format = "png"
+		} else {
+			self.strBase64 = " "
+			self.format = " "
+		}
+	}
+	
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+		if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+			projectImg.contentMode = .scaleAspectFit
+			projectImg.image = pickedImage
+			gotImage = true
+			self.image = pickedImage
+		}
+		dismiss(animated: true, completion: nil)
+	}
+	
+	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
 		dismiss(animated: true, completion: nil)
 	}
 	
@@ -122,16 +168,16 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 			"type":"group",
 			"project":projectNameTextField.text!,
 			"description":projectDescriptionTextField.text!,
-			"ext": "",
-			"g_profile": "",
+			"ext": format!,
+			"g_profile": strBase64!,
 			"users": "[\(smembers.joined(separator: ","))]",
 			"adminemail": myEmail
 			]
-		
-		print(parameters)
 	
-		Alamofire.request("\(baseURL)user_group.php", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+		Alamofire.request("\(baseURL)user_group.php", method: .post, parameters: parameters).responseJSON { response in
 
+			//unComment to enable local storage
+			
 //			if let dict = response.result.value as? Dictionary<String, AnyObject> {
 //				let topic = dict["project"] as? String
 //				let g_id = dict["g_id"] as? String
@@ -139,17 +185,13 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 //				
 //				self.saveData(topic: topic!, g_id: g_id!, desription: description!)
 //			}
-			
 			self.dismiss(animated: true, completion: nil)
 			
 		}
 	}
 	
-	@IBAction func addParticipantsBtnPressed(_ sender: Any) {
-		performSegue(withIdentifier: "AddParticipantsVC", sender: self)
-	}
-	
 	//CoreData Saving Functions
+	
 	func saveData(topic: String, g_id: String, desription: String) {
 		let context = self.getContext()
 		
@@ -177,41 +219,5 @@ class AddProjectVC: UIViewController, UICollectionViewDelegate, UICollectionView
 	func getContext () -> NSManagedObjectContext {
 		let appDelegate = UIApplication.shared.delegate as! AppDelegate
 		return appDelegate.persistentContainer.viewContext
-	}
-	
-	@IBAction func uploadImagePressed(_ sender: Any) {
-		//add image
-		
-		imagePicker.allowsEditing = false
-		imagePicker.sourceType = .photoLibrary
-		
-		present(imagePicker, animated: true, completion: nil)
-	}
-	
-	func getString() {
-		if gotImage == true {
-			let imageData: NSData = UIImagePNGRepresentation(image)! as NSData
-			let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
-			self.strBase64 = strBase64
-			self.format = "png"
-		} else {
-			self.strBase64 = " "
-			self.format = " "
-		}
-	}
-	
-	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-		if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-			projectImg.contentMode = .scaleAspectFit
-			projectImg.image = pickedImage
-			gotImage = true
-			self.image = pickedImage
-		}
-		
-		dismiss(animated: true, completion: nil)
-	}
-	
-	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-		dismiss(animated: true, completion: nil)
 	}
 }

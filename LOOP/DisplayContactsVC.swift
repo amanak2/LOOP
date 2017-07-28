@@ -10,6 +10,10 @@ import UIKit
 import Contacts
 import Alamofire
 
+protocol YourCellDelegate: class {
+	func didPressButton(_ tag: Int)
+}
+
 class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,YourCellDelegate, UISearchBarDelegate {
 
 	@IBOutlet weak var searchBar: UISearchBar!
@@ -30,10 +34,16 @@ class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataS
 		view.addGestureRecognizer(tap)
     }
 	
+	//MARK - Util
 	func dismissKeyboard() {
 		view.endEditing(true)
 	}
 	
+	@IBAction func backBtn(_ sender: Any) {
+		dismiss(animated: true, completion: nil)
+	}
+	
+	//MARK - SearchBar
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		
 		view.endEditing(true)
@@ -57,6 +67,7 @@ class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataS
 		}
 	}
 	
+	//MARK - Get Contacts from Phone
 	lazy var contacts: [CNContact] = {
 		let contactStore = CNContactStore()
 		let keysToFetch = [
@@ -90,6 +101,7 @@ class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataS
 		return results
 	}()
 	
+	//MARK - TableView
 	func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
@@ -123,9 +135,7 @@ class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataS
 		return cell!
 	}
 	
-	@IBAction func backBtn(_ sender: Any) {
-		dismiss(animated: true, completion: nil)
-	}
+	// MARK - Protocol Invoked button to invite Friends 
 	
 	func didPressButton(_ tag: Int) {
 		let contact = self.contacts[tag]
@@ -138,31 +148,83 @@ class DisplayContactsVC: UIViewController, UITableViewDelegate, UITableViewDataS
 		
 			if let dict = response.result.value as? Dictionary<String, AnyObject> {
 				
-				let msg = dict["msg"] as? String
+				//let msg = dict["msg"] as? String
 				
 				let Status = dict["status"] as? String
 				
 				if Status == "200" {
 					// request sent
-					let alert = UIAlertController(title: "Invite", message: "Invite sent", preferredStyle: .alert)
-					
-					let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
-						
-					alert.addAction(okBtn)
-					self.present(alert, animated: true, completion: nil)
+					self.inviteSent()
 					
 				} else {
 					// Failed
-					let alert = UIAlertController(title: "Invite", message: msg, preferredStyle: .alert)
-						
-					let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
-						
-					alert.addAction(okBtn)
-					self.present(alert, animated: true, completion: nil)
+					self.inviteFailed()
 				}
 				
 			}
 		}
+	}
+	
+	//MARK - Add by email 
+	
+	@IBAction func addByEmailBtn(_ sender: Any) {
+		let alert = UIAlertController(title: "Add Contact", message: "Enter valid email to send invitation", preferredStyle: .alert)
+		
+		let cancelBtn = UIAlertAction(title: "Cancel", style: .cancel) { UIAlertAction in }
+		let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in
+
+			let textField = alert.textFields![0] as UITextField
+			
+			let parameters: Parameters = [
+				"email": textField.text!
+			]
+			
+			Alamofire.request("\(baseURL)frndsSystem.php?action=send&my_email=\(myEmail)", method: .post, parameters: parameters).responseJSON { response in
+				
+				if let dict = response.result.value as? Dictionary<String, AnyObject> {
+					
+					//let msg = dict["msg"] as? String
+					
+					let Status = dict["status"] as? String
+					
+					if Status == "200" {
+						// request sent
+						self.inviteSent()
+					} else {
+						// Failed
+						self.inviteFailed()
+					}
+					
+				}
+			}
+		
+		}
+		
+		alert.addTextField { (textField : UITextField!) -> Void in
+			textField.placeholder = "Enter Email Address"
+		}
+		
+		alert.addAction(okBtn)
+		alert.addAction(cancelBtn)
+		self.present(alert, animated: true, completion: nil)
+	}
+	
+	func inviteSent() {
+		let alert = UIAlertController(title: "Invite", message: "Invite sent", preferredStyle: .alert)
+		
+		let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
+		
+		alert.addAction(ok)
+		self.present(alert, animated: true, completion: nil)
+	}
+	
+	func inviteFailed() {
+		let alert = UIAlertController(title: "Invite", message: "Something Went Wrong", preferredStyle: .alert)
+		
+		let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
+		
+		alert.addAction(ok)
+		self.present(alert, animated: true, completion: nil)
 	}
 	
 }

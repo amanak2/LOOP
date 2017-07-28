@@ -26,6 +26,7 @@ class MeetingDescriptionVC: UIViewController, UICollectionViewDelegate, UICollec
 	var date: String!
 	var time: String!
 	var adminEmail: String!
+	var type: String!
 	var users = [NotificationUsers]()
 	
 	override func viewDidLoad() {
@@ -42,8 +43,11 @@ class MeetingDescriptionVC: UIViewController, UICollectionViewDelegate, UICollec
 			meetingType.text = "Mandatory"
 			deleteMeetingBtn.isHidden = false
 		} else {
-			deleteMeetingBtn.isHidden = true
-			meetingType.text = "Optional"
+			for key in users {
+				if key.userEmail == myEmail {
+					meetingType.text = "\(key.userCategory.capitalized)"
+				}
+			}
 		}
 		
 		participantsCountLbl.text = "\(users.count)"
@@ -52,6 +56,8 @@ class MeetingDescriptionVC: UIViewController, UICollectionViewDelegate, UICollec
 		timeLbl.text = time
 		collectionView.reloadData()
 	}
+	
+	//MARK - CollectionView
 	
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
 		return 1
@@ -72,6 +78,8 @@ class MeetingDescriptionVC: UIViewController, UICollectionViewDelegate, UICollec
 			return MeetingDescriptionCell()
 		}
 	}
+	
+	//MARK - Util
 	
 	@IBAction func deleteBtnPressed(_ sender: Any){
 		//delete project

@@ -10,6 +10,7 @@ import UIKit
 import Contacts
 import Alamofire
 
+//MARK - Loads Data in TableView on DisplayContactsVC
 class PersonCell: UITableViewCell {
 
 	@IBOutlet weak var personNameLbl: UILabel!

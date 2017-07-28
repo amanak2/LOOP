@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK - Loads Data in TableView on DisplayMyContactsVC
 class MyContactsCell: UITableViewCell {
 
 	@IBOutlet weak var personNameLbl: UILabel!

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SDWebImage
+import Alamofire
 
 class ChatViewVC: UIViewController {
 
@@ -16,13 +18,24 @@ class ChatViewVC: UIViewController {
 	@IBOutlet weak var projectTitleLbl: UILabel!
 	
 	var projectTitle: String!
+	var projectImage: String!
+	var projectUsers = [NotificationUsers]()
+	var users = ""
+	var email = ""
+	var userNames = [String]()
+	var userEmail = [String]()
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
+		projectImg.layer.cornerRadius = projectImg.frame.size.width / 2
+		projectImg.clipsToBounds = true
+		
+		//tap anywhere to disapear keyboard with message textField
 		NotificationCenter.default.addObserver(self, selector: #selector(ChatViewVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(ChatViewVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 		
+		//tap anywhere to disapear keyboard
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChatVC.dismissKeyboard))
 		tap.cancelsTouchesInView = false
 		view.addGestureRecognizer(tap)
@@ -34,6 +47,19 @@ class ChatViewVC: UIViewController {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		projectTitleLbl.text = self.projectTitle
+		projectImg.sd_setImage(with: URL(string: projectImage as String), placeholderImage: UIImage(named: "Mr.Nobody"))
+		
+		for key in projectUsers {
+			users = String(format: "%@", arguments: [key.userName])
+			userNames.append(users)
+		}
+		
+		for key in projectUsers {
+			email = String(format: "{\"email\":\"%@\"}", arguments: [key.userEmail])
+			userEmail.append(email)
+		}
+		
+		projectUsersLbl.text = "\(userNames.joined(separator: ","))"
 	}
 	
 	func keyboardWillShow(notification: NSNotification) {
@@ -62,11 +88,62 @@ class ChatViewVC: UIViewController {
 	}
 	
 	@IBAction func audioCallBtnPressed(_ sender: Any) {
-		performSegue(withIdentifier: "AudioCallVC", sender: self)
+		
+		let parameters: Parameters = [
+			"type" : "audio",
+			"vid" : projectTitle!,
+			"users" : "[\(userEmail.joined(separator: ","))]"
+		]
+		
+		Alamofire.request("\(baseURL)audio_video.php?sender_email=\(myEmail)", method: .post, parameters: parameters,encoding: JSONEncoding.default).responseJSON { response in
+			
+			if let dict = response.result.value as? Dictionary<String, AnyObject> {
+				
+				let msg = dict["message"] as? String
+				let status = dict["status"] as? String
+				
+				if status == "200" {
+					self.performSegue(withIdentifier: "AudioCallVC", sender: self)
+				} else {
+					let alert = UIAlertController(title: "Audio Call", message: msg, preferredStyle: .alert)
+					
+					let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
+					
+					alert.addAction(okBtn)
+					self.present(alert, animated: true, completion: nil)
+				}
+			}
+		}
 	}
 	
 	@IBAction func videoCallBtnPressed(_ sender: Any) {
-		performSegue(withIdentifier: "VideoCallVC", sender: self)
+		
+		let parameters: Parameters = [
+			"type" : "video",
+			"vid" : projectTitle!,
+			"users" : "[\(userEmail.joined(separator: ","))]"
+		]
+		
+		Alamofire.request("\(baseURL)audio_video.php?sender_email=\(myEmail)", method: .post, parameters: parameters,encoding: JSONEncoding.default).responseJSON { response in
+			
+			if let dict = response.result.value as? Dictionary<String, AnyObject> {
+				
+				let msg = dict["message"] as? String
+				let status = dict["status"] as? String
+				
+				
+				if status == "200" {
+					self.performSegue(withIdentifier: "VideoCallVC", sender: self)
+				} else {
+					let alert = UIAlertController(title: "Video Call", message: msg, preferredStyle: .alert)
+					
+					let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
+					
+					alert.addAction(okBtn)
+					self.present(alert, animated: true, completion: nil)
+				}
+			}
+		}
 	}
 	
 	@IBAction func sendLocationBtnPressed(_ sender: Any) {
@@ -85,7 +162,7 @@ class ChatViewVC: UIViewController {
 		
 		if segue.identifier == "VideoCallVC" {
 			let destination = segue.destination as! VideoCallVC
-			destination.ProjectName = self.projectTitle
+			destination.ProjectTitle = self.projectTitle
 		}
 	}
 	

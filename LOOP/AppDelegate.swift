@@ -8,15 +8,51 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
-
+	func registerForPushNotification() {
+		UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+			
+			print("Permission granted: \(granted)")
+			
+			guard granted else { return }
+			self.getNotificationSettings()
+		}
+	}
+	
+	func getNotificationSettings() {
+		UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+			print("Notification settings: \(settings)")
+			
+			guard settings.authorizationStatus == .authorized else { return }
+			UIApplication.shared.registerForRemoteNotifications()
+		}
+	}
+	
+	func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+		print("Failed to register: \(error)")
+	}
+	
+	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+		let tokenParts = deviceToken.map { data -> String in
+			return String(format: "%02.2hhx", data)
+		}
+  
+		let token = tokenParts.joined()
+		UserDefaults.standard.set(token, forKey: "DeviceToken")
+	}
+	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+		FirebaseApp.configure()
+		registerForPushNotification()
+		
 		NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.didSessionRouteChange(notification:)), name: NSNotification.Name.AVAudioSessionRouteChange, object: nil)
 		
 		signal(SIGPIPE, SIG_IGN)

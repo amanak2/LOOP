@@ -53,6 +53,7 @@
 		92D5B7361EEAA7B600E4BD5D /* ChooseMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5B7351EEAA7B600E4BD5D /* ChooseMemberCell.swift */; };
 		92E2E4731F15FDF2004E70C3 /* NotificationUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E2E4721F15FDF2004E70C3 /* NotificationUsers.swift */; };
 		92E2E4771F16066A004E70C3 /* MeetingDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E2E4761F16066A004E70C3 /* MeetingDescriptionCell.swift */; };
+		92F15E801F27216F00F2E82C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92F15E7F1F27216F00F2E82C /* GoogleService-Info.plist */; };
 		92F51E141EEFD3C700F9DAEF /* ViewTeamMembersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F51E131EEFD3C700F9DAEF /* ViewTeamMembersVC.swift */; };
 		92F51E161EF000C700F9DAEF /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F51E151EF000C700F9DAEF /* ProjectCell.swift */; };
 		92F51E191EF0047B00F9DAEF /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F51E181EF0047B00F9DAEF /* NotificationModel.swift */; };
@@ -114,6 +115,7 @@
 		92D5B7351EEAA7B600E4BD5D /* ChooseMemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseMemberCell.swift; sourceTree = "<group>"; };
 		92E2E4721F15FDF2004E70C3 /* NotificationUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationUsers.swift; sourceTree = "<group>"; };
 		92E2E4761F16066A004E70C3 /* MeetingDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingDescriptionCell.swift; sourceTree = "<group>"; };
+		92F15E7F1F27216F00F2E82C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92F51E131EEFD3C700F9DAEF /* ViewTeamMembersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTeamMembersVC.swift; sourceTree = "<group>"; };
 		92F51E151EF000C700F9DAEF /* ProjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		92F51E181EF0047B00F9DAEF /* NotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				92C7E67F1EDEA4C200D7170A /* Assets.xcassets */,
 				92C7E6811EDEA4C200D7170A /* LaunchScreen.storyboard */,
 				92C7E6841EDEA4C200D7170A /* Info.plist */,
+				92F15E7F1F27216F00F2E82C /* GoogleService-Info.plist */,
 				92C7E67C1EDEA4C200D7170A /* LOOP.xcdatamodeld */,
 				929A32E01F220BF300F1CFB5 /* Bridging_Header.m */,
 				929A32DF1F220BF300F1CFB5 /* LOOP-Bridging-Header.h */,
@@ -223,6 +226,7 @@
 				92D5B70E1EE4278700E4BD5D /* TabBarVC.swift */,
 				92D5B7311EEA7EEC00E4BD5D /* MeetingCell.swift */,
 				92F51E151EF000C700F9DAEF /* ProjectCell.swift */,
+				92102D3C1F14F16800127EE4 /* ChatCell.swift */,
 				92D5B71A1EE542DC00E4BD5D /* PersonCell.swift */,
 				92D5B7201EE580CA00E4BD5D /* MyContactsCell.swift */,
 				92D5B72B1EE7D0B800E4BD5D /* AddMembersCell.swift */,
@@ -234,7 +238,6 @@
 				92AAFE451F0E202E0077F142 /* AddedParticipantsCell.swift */,
 				92102D341F14B01400127EE4 /* MparticipantsCell.swift */,
 				92E2E4761F16066A004E70C3 /* MeetingDescriptionCell.swift */,
-				92102D3C1F14F16800127EE4 /* ChatCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92C7E6831EDEA4C200D7170A /* LaunchScreen.storyboard in Resources */,
+				92F15E801F27216F00F2E82C /* GoogleService-Info.plist in Resources */,
 				92C7E6801EDEA4C200D7170A /* Assets.xcassets in Resources */,
 				92C7E67B1EDEA4C200D7170A /* Main.storyboard in Resources */,
 			);

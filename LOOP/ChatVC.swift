@@ -25,6 +25,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Your
 	var projectType: String!
 	var projectTitle: String!
 	var projectGid: String!
+	var projectImg: String!
 	var projectUsers = [NotificationUsers]()
 	
 	override func viewDidLoad() {
@@ -33,7 +34,13 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Your
 		tableView.dataSource = self
 		searchBar.delegate = self
 		searchBar.returnKeyType = UIReturnKeyType.done
+		updateFCM()
 		
+		self.notifications.removeAll()
+		self.downloadNotificationData()
+		self.tableView.reloadData()
+		
+		//tap anywhere to disapear keyboard
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChatVC.dismissKeyboard))
 		tap.cancelsTouchesInView = false
 		view.addGestureRecognizer(tap)
@@ -47,6 +54,25 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Your
 	
 	func dismissKeyboard() {
 		view.endEditing(true)
+	}
+	
+	func updateFCM() {
+		let parameters: Parameters = [
+			"email": myEmail,
+			"reg_id": DeviceToken
+		]
+		
+		Alamofire.request("\(baseURL)update_fcm_reg.php", method: .post, parameters: parameters).responseJSON { response in
+			
+			if let dict = response.result.value as? Dictionary<String, AnyObject> {
+				
+				let status = dict["status"] as? String
+				
+				if status == "200" {
+					print("FCM updated")
+				}
+			}
+		}
 	}
 	
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -80,7 +106,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Your
 				if let dict = response.result.value as? [[String:Any]] {
 					for obj in dict {
 						let notification = NotificationModel(getData: obj)
-						if notification.type == "OpenProject" || notification.type == "accept" {
+						if notification.type == "OpenProject" || notification.type == "accept" || notification.type == "invite"  {
 							self.notifications.append(notification)
 						}
 					}
@@ -126,6 +152,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Your
 				projectType = cell.projectType
 				projectUsers = cell.projectUsers
 				projectGid = cell.projectGid
+				projectImg = cell.projectImg
 				performSegue(withIdentifier: "ChatViewVC", sender: self)
 			}
 		}
@@ -135,6 +162,8 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Your
 		if segue.identifier == "ChatViewVC" {
 			let destination = segue.destination as! ChatViewVC
 			destination.projectTitle = self.projectTitle
+			destination.projectImage = self.projectImg
+			destination.projectUsers = self.projectUsers
 		}
 	}
 	

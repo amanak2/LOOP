@@ -30,26 +30,26 @@ class ProjectDesciptionVC: UIViewController {
 	@IBAction func deleteProjectPressed(_ sender: Any) {
 		let parameters: Parameters = [
 			"g_id": gId,
-			"admin_email": adminEmail
+			"admin_email": myEmail
 		]
 		
-		Alamofire.request("\(baseURL)group_detail.php", method: .post, parameters: parameters).responseJSON { response in
+		Alamofire.request("\(baseURL)remove_group.php", method: .post, parameters: parameters).responseJSON { response in
 			
 			if let dict = response.result.value as? Dictionary<String, AnyObject> {
 				
 				let msg = dict["message"] as? String
+				let status = dict["status"] as? String
 				
-				if let status = dict["status"] as? String {
-					if status == "200" {
-						self.dismiss(animated: true, completion: nil)
-					} else {
-						let alert = UIAlertController(title: "Project", message: msg, preferredStyle: .alert)
+				
+				if status == "200" {
+					self.dismiss(animated: true, completion: nil)
+				} else {
+					let alert = UIAlertController(title: "Project", message: msg, preferredStyle: .alert)
 						
-						let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
+					let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { UIAlertAction in }
 						
-						alert.addAction(okBtn)
-						self.present(alert, animated: true, completion: nil)
-					}
+					alert.addAction(okBtn)
+					self.present(alert, animated: true, completion: nil)
 				}
 			}
 		}
@@ -78,9 +78,9 @@ class ProjectDesciptionVC: UIViewController {
 					self.adminEmail = adminEmail
 					
 					if adminEmail == myEmail {
-						self.deleteProjectBtn.isHidden = true
-					} else {
 						self.deleteProjectBtn.isHidden = false
+					} else {
+						self.deleteProjectBtn.isHidden = true
 					}
 				}
 			}

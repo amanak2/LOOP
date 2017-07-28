@@ -37,6 +37,7 @@ class AddMeetingVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		//tap anywhere to disapear keyboard
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddMeetingVC.dismissKeyboard))
 		tap.cancelsTouchesInView = false
 		view.addGestureRecognizer(tap)
@@ -48,8 +49,14 @@ class AddMeetingVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
 		getCurrentTime()
     }
 	
+	//MARK - Util
+	
 	func dismissKeyboard() {
 		view.endEditing(true)
+	}
+	
+	@IBAction func backBtn(_ sender: Any) {
+		dismiss(animated: true, completion: nil)
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -61,12 +68,22 @@ class AddMeetingVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
 			addParticipantsBtn.isHidden = true
 		}
 		
-		
-		
 		collectionView.reloadData()
 		dataPickerView.isHidden = true
 	}
 	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let destination = segue.destination as? ChooseMembersFromMyContactsVC {
+			destination.delegate = self
+			destination.del = self
+		}
+		
+		if let destination2 = segue.destination as? SelectTeamVC {
+			destination2.delegate = self
+		}
+	}
+	
+	//Convert Array to string array for API hitting
 	func getSmembers() {
 		if selectedMembers.isEmpty == false {
 			for (key, value) in selectedMembers {
@@ -77,6 +94,21 @@ class AddMeetingVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
 		}
 	}
 	
+	func passingMembers(members: [String: String]) {
+		self.selectedMembers = members
+		getSmembers()
+	}
+	
+	func passingTeamMembers(members: [String: String]) {
+		self.selectedMembers = members
+		getSmembers()
+	}
+	
+	func passingContacts(selects: [MyContactsModel]) {
+		self.contacts = selects
+	}
+	
+	//MARK - Setting and Getting Time and Date
 	func getCurrentTime() {
 		let date = Date()
 		let calendar = Calendar.current
@@ -118,30 +150,7 @@ class AddMeetingVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
 		selectedTimeLbl.text = "\(day)-\(month)-\(year), \(hour):\(min)" 
 	}
 	
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if let destination = segue.destination as? ChooseMembersFromMyContactsVC {
-			destination.delegate = self
-			destination.del = self
-		}
-		
-		if let destination2 = segue.destination as? SelectTeamVC {
-			destination2.delegate = self
-		}
-	}
-	
-	func passingMembers(members: [String: String]) {
-		self.selectedMembers = members
-		getSmembers()
-	}
-	
-	func passingTeamMembers(members: [String: String]) {
-		self.selectedMembers = members
-		getSmembers()
-	}
-	
-	func passingContacts(selects: [MyContactsModel]) {
-		self.contacts = selects
-	}
+	//MARK - API hitting Functions
 	
 	@IBAction func AddMeetingBtnPressed(_ sender: Any) {
 		let alert = UIAlertController(title: "Add Members", message: "Where would you like to select Members From", preferredStyle: .alert)
@@ -179,6 +188,8 @@ class AddMeetingVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
 		]
 		
 		Alamofire.request("\(baseURL)meeting_shedule.php",method: .post, parameters: parameters,encoding: JSONEncoding.default).responseJSON { response in
+
+			//unComments to unable local storage of Data
 			
 //			if let dict = response.result.value as? Dictionary<String, AnyObject> {
 //				let topic = dict["topic"] as? String
@@ -192,6 +203,7 @@ class AddMeetingVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
 		dismiss(animated: true, completion: nil)
 	}
 	
+	//MARK - Core Data Functions
 	
 	func storeMeeting (topic: String, g_id: String) {
 		let context = self.getContext()
@@ -221,9 +233,8 @@ class AddMeetingVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
 		return appDelegate.persistentContainer.viewContext
 	}
 	
-	@IBAction func backBtn(_ sender: Any) {
-		dismiss(animated: true, completion: nil)
-	}
+	
+	//MARK - Collection View
 	
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
 		return 1

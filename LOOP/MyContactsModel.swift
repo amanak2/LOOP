@@ -8,6 +8,7 @@
 
 import Foundation
 
+//MARK - Gets Data from My Friends API 
 class MyContactsModel {
 	private var _user: String!
 	private var _email: String!

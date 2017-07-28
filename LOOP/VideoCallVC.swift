@@ -29,7 +29,7 @@ class VideoCallVC: UIViewController, SKYLINKConnectionLifeCycleDelegate, SKYLINK
 
 	
 	var ROOM_NAME: String!
-	var ProjectName: String!
+	var ProjectTitle: String!
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class VideoCallVC: UIViewController, SKYLINKConnectionLifeCycleDelegate, SKYLINK
 		NSLog("SKYLINKConnection version = %@", SKYLINKConnection.getSkylinkVersion())
 		
 		self.peersInfos = [:]
-		ROOM_NAME = ProjectName
+		ROOM_NAME = ProjectTitle
 		
 		// Creating configuration
 		let config:SKYLINKConnectionConfig = SKYLINKConnectionConfig()

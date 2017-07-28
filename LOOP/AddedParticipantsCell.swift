@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 
+// MARK - Loads data in CollectionView on AddParticipantsVC
 class AddedParticipantsCell: UICollectionViewCell {
 	
 	@IBOutlet weak var personName: UILabel!

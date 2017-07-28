@@ -30,6 +30,12 @@ class CreateTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 		}
 	}
 	
+	//MARK - Util
+	
+	override func viewDidAppear(_ animated: Bool) {
+		emptyContacts()
+	}
+	
 	func emptyContacts() {
 		if names.isEmpty == true {
 			let alert = UIAlertController(title: "No Teams", message: "Please Create Teams", preferredStyle: .alert)
@@ -44,34 +50,6 @@ class CreateTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 	@IBAction func backBtn(_ sender: Any) {
 		dismiss(animated: true, completion: nil)
 	}
-
-	@IBAction func createTeambtnPressed(_ sender: Any) {
-		
-		let alert = UIAlertController(title: "Create Team", message: "Enter Name of New Team", preferredStyle: .alert)
-		
-		alert.addTextField { (textField) in
-			textField.placeholder = "Enter Team Name"
-			}
-
-		
-		let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-			UIAlertAction in
-			let textField = alert.textFields![0]
-			self.teamName = textField.text
-			self.performSegue(withIdentifier: "AddTeamMembersVC", sender: self)
-		}
-		
-		let cancelBtn = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) {
-			UIAlertAction in
-			self.dismiss(animated: true, completion: nil)
-		}
-		
-		alert.addAction(okBtn)
-		alert.addAction(cancelBtn)
-		
-		self.present(alert, animated: true, completion: nil)
-	
-	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "AddTeamMembersVC" {
@@ -84,6 +62,35 @@ class CreateTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 			destination.teamMembers = send
 		}
 	}
+	
+	//MARK - Give name to new team
+	
+	@IBAction func createTeambtnPressed(_ sender: Any) {
+		
+		let alert = UIAlertController(title: "Create Team", message: "Enter Name of New Team", preferredStyle: .alert)
+		
+		alert.addTextField { (textField) in
+			textField.placeholder = "Enter Team Name"
+		}
+		
+		
+		let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+			UIAlertAction in
+			let textField = alert.textFields![0]
+			self.teamName = textField.text
+			self.performSegue(withIdentifier: "AddTeamMembersVC", sender: self)
+		}
+		
+		let cancelBtn = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { UIAlertAction in }
+		
+		alert.addAction(okBtn)
+		alert.addAction(cancelBtn)
+		
+		self.present(alert, animated: true, completion: nil)
+		
+	}
+	
+	//MARK - Table View
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return names.count
@@ -98,6 +105,21 @@ class CreateTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 	func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		
+		let cell = tableView.cellForRow(at: indexPath)
+		
+		for (key, value) in team {
+			if cell?.textLabel?.text == key {
+				send = value
+				performSegue(withIdentifier: "ViewTeamMembersVC", sender: self)
+			}
+		}
+	}
+	
+	
+	//MARK - Retrive Data from Custom Dictionary
 	
 	func retrieveDictionary(withKey key: String) -> [String: [String: String]]? {
 		
@@ -114,20 +136,6 @@ class CreateTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 		// Unarchive data
 		let unarchivedObject = NSKeyedUnarchiver.unarchiveObject(with: retrievedData)
 		return unarchivedObject as? [String: [String: String]]
-	}
-	
-	
-	
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		
-		let cell = tableView.cellForRow(at: indexPath)
-		
-		for (key, value) in team {
-			if cell?.textLabel?.text == key {
-				send = value
-				performSegue(withIdentifier: "ViewTeamMembersVC", sender: self)
-			}
-		}
 	}
 	
 }

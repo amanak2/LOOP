@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Loads Data in TableView on AddTeamMembersVC
 class AddMembersCell: UITableViewCell {
 
 	@IBOutlet weak var personNameLbl: UILabel!

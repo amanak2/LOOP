@@ -8,12 +8,14 @@
 
 import Foundation
 
+//MARK - Gets Users Details Notification API
 class NotificationUsers {
 	
 	private var _userEmail: String!
 	private var _userCategory: String!
 	private var _userProfile: String!
 	private var _userName: String!
+	private var _catagory: String!
 	
 	var userEmail: String {
 		if _userEmail == nil {
@@ -43,6 +45,13 @@ class NotificationUsers {
 		return _userName
 	}
 	
+	var catagory: String {
+		if _catagory == nil {
+			_catagory = ""
+		}
+		return _catagory
+	}
+	
 	init(data: [String: Any]) {
 		
 		if let email = data["email"] as? String {
@@ -59,6 +68,10 @@ class NotificationUsers {
 		
 		if let profile = data["u_profile"] as? String {
 			self._userProfile = profile
+		}
+		
+		if let catagory = data["category"] as? String {
+			self._catagory = catagory
 		}
 	}
 }

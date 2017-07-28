@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Loads Data in TableView on ChooseMembersFromMyContactsVC
 class ChooseMemberCell: UITableViewCell {
 
 	@IBOutlet weak var personImg: UIImageView!

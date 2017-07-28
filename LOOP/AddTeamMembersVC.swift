@@ -26,15 +26,7 @@ class AddTeamMembersVC: UIViewController,UITableViewDelegate, UITableViewDataSou
 		dowloadMyContacts()
     }
 	
-	func dowloadMyContacts() {
-		Alamofire.request("\(baseURL)frnd_req.php?my_email=\(myEmail)", method: .get).responseJSON { response in
-			
-			if let dict = response.result.value as? [[String:Any]]{
-				self.myContacts=dict
-				self.tableView.reloadData()
-			}
-		}
-	}
+	//MARK - Util 
 
 	@IBAction func backBtn(_ sender: Any) {
 		dismiss(animated: true, completion: nil)
@@ -53,6 +45,19 @@ class AddTeamMembersVC: UIViewController,UITableViewDelegate, UITableViewDataSou
 			dismiss(animated: true, completion: nil)
 		}
 	}
+	
+	//Load Data from myContacts
+	func dowloadMyContacts() {
+		Alamofire.request("\(baseURL)frnd_req.php?my_email=\(myEmail)", method: .get).responseJSON { response in
+			
+			if let dict = response.result.value as? [[String:Any]]{
+				self.myContacts=dict
+				self.tableView.reloadData()
+			}
+		}
+	}
+	
+	//MARK - Table View
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return myContacts.count
@@ -79,6 +84,9 @@ class AddTeamMembersVC: UIViewController,UITableViewDelegate, UITableViewDataSou
 		}
 		
 	}
+	
+	
+	//MARK - Save Data and Retreve data from Custom Dictionary
 	
 	func save(prevTeam: [String: [String: String]], forKey key: String) {
 		let archiver = NSKeyedArchiver.archivedData(withRootObject: prevTeam)

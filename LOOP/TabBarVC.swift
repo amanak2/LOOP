@@ -35,15 +35,4 @@ class TabBarVC: UITabBarController {
 			}
 		}
 	}
-	
-	func dummyData() {
-		UserDefaults.standard.set("", forKey: "email")
-		UserDefaults.standard.set("", forKey: "firstname")
-		UserDefaults.standard.set("", forKey: "lastname")
-		UserDefaults.standard.set("" , forKey: "modile")
-		UserDefaults.standard.set("" , forKey: "office")
-		UserDefaults.standard.set("" , forKey: "designation")
-		UserDefaults.standard.set("", forKey: "profile")
-		UserDefaults.standard.synchronize()
-	}
 }

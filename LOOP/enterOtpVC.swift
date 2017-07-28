@@ -19,6 +19,7 @@ class enterOtpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		//tap anywhere to disapear keyboard
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(enterOtpVC.dismissKeyboard))
 		tap.cancelsTouchesInView = false
 		view.addGestureRecognizer(tap)

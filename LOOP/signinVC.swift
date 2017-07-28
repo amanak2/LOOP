@@ -18,16 +18,19 @@ class signinVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		//tap anywhere to disapear keyboard
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(signinVC.dismissKeyboard))
 		tap.cancelsTouchesInView = false
 		view.addGestureRecognizer(tap)
 		
+		//Change colour of placeholder text
 		userTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
 		passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
 		
 		passwordTextField.isSecureTextEntry = true
     }
 	
+	//tap anywhere to disapear keyboard function
 	func dismissKeyboard() {
 		view.endEditing(true)
 	}
